@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Radar — Live Global Visa & Border Intelligence</title>
+<meta name="description" content="Real-time visa requirements, border wait times, and travel policy alerts for 195 countries. The world's most advanced passport intelligence platform.">
+<link rel="canonical" href="https://visaradar.com/">
+<meta property="og:title" content="Visa Radar — Live Global Visa & Border Intelligence">
+<meta property="og:description" content="Real-time visa intelligence for 195 countries.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Visa Radar","url":"https://visaradar.com","description":"Live global visa requirements, border wait times and travel policy alerts for 195 countries.","applicationCategory":"TravelApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated grid */
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-drift 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes grid-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* Radar sweep */
+.radar-sweep {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 800px; height: 800px;
+  margin: -400px 0 0 -400px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.06);
+  pointer-events: none;
+}
+.radar-sweep::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.04);
+  transform: scale(0.66);
+}
+.radar-sweep::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.03);
+  transform: scale(0.33);
+}
+.radar-line {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 50%; height: 1px;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, rgba(201,168,76,0.6), transparent);
+  animation: sweep 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Glow blob */
+.hero-glow {
+  position: absolute;
+  width: 700px; height: 500px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 2; text-align: center; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 32px;
+}
+.hero-eyebrow .line { width: 40px; height: 1px; background: var(--gold); opacity: 0.5; }
+.hero-eyebrow span {
+  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 0.95;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.hero h1 .sub {
+  display: block;
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 28px auto 40px;
+  color: var(--text2);
+  line-height: 1.8;
+}
+
+/* PASSPORT SELECTOR */
+.passport-search {
+  display: flex; gap: 0;
+  max-width: 540px;
+  margin: 0 auto 20px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--bg2);
+}
+.passport-search:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+}
+.passport-search select {
+  flex: 1; background: transparent; color: var(--text);
+  border: none; padding: 14px 16px;
+  font-family: var(--font-body); font-size: 0.95rem;
+  outline: none; appearance: none; -webkit-appearance: none;
+  cursor: pointer;
+}
+.passport-search select option { background: var(--bg3); }
+.passport-search .search-btn {
+  background: var(--gold); color: #03060a;
+  border: none; padding: 0 24px;
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; transition: background 0.2s;
+  white-space: nowrap;
+}
+.passport-search .search-btn:hover { background: var(--gold2); }
+
+.hero-meta {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+}
+.hero-meta .sep { opacity: 0.3; }
+
+/* STATS STRIP */
+.stats-strip {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+.stats-strip .inner {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat-box { text-align: center; padding: 0 24px; border-right: 1px solid var(--border); }
+.stat-box:last-child { border-right: none; }
+
+/* MAP */
+#map {
+  height: 500px; width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg2);
+}
+.leaflet-container { background: #03060a !important; }
+.map-section { padding: 72px 0; }
+.map-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 16px; }
+.map-legend { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.62rem; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+.map-tooltip {
+  background: var(--bg3) !important; border: 1px solid var(--border2) !important;
+  color: var(--text) !important; font-family: var(--font-body) !important;
+  font-size: 0.82rem !important; border-radius: var(--radius) !important;
+  padding: 8px 12px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;
+}
+
+/* FEATURES */
+.features-section { padding: 72px 0; border-top: 1px solid var(--border); }
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.feature-item { background: var(--bg); padding: 32px 28px; transition: background 0.2s; }
+.feature-item:hover { background: var(--bg2); }
+.feature-num { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 20px; opacity: 0.6; }
+.feature-item h3 { font-size: 1rem; margin-bottom: 10px; color: var(--text); font-weight: 600; }
+.feature-item p { font-size: 0.85rem; line-height: 1.7; margin-bottom: 16px; }
+.feature-item a { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+.feature-item a:hover { color: var(--gold2); }
+
+/* POPULAR */
+.popular-section { padding: 72px 0; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body class="page-wrap">
+<div id="nav-placeholder"></div>
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="radar-sweep"><div class="radar-line"></div></div>
+  <div class="hero-glow"></div>
+
+  <div class="container hero-content">
+    <div class="hero-eyebrow">
+      <div class="line"></div>
+      <span>Global Intelligence Platform</span>
+      <div class="line"></div>
+    </div>
+
+    <h1>
+      VISA
+      <span class="sub">RADAR</span>
+    </h1>
+
+    <p class="hero-desc">Real-time visa requirements, live border wait times, and instant policy change alerts — for every passport, every destination on earth.</p>
+
+    <div class="passport-search">
+      <select id="passport-select" onchange="updateMap()">
+        <option value="">Select passport to scan…</option>
+        <option value="AE">🇦🇪 United Arab Emirates</option>
+        <option value="US">🇺🇸 United States</option>
+        <option value="GB">🇬🇧 United Kingdom</option>
+        <option value="DE">🇩🇪 Germany</option>
+        <option value="IN">🇮🇳 India</option>
+        <option value="CN">🇨🇳 China</option>
+        <option value="PH">🇵🇭 Philippines</option>
+        <option value="JP">🇯🇵 Japan</option>
+        <option value="SG">🇸🇬 Singapore</option>
+        <option value="AU">🇦🇺 Australia</option>
+        <option value="CA">🇨🇦 Canada</option>
+        <option value="FR">🇫🇷 France</option>
+      </select>
+      <button class="search-btn" onclick="window.location.href='/calculator.html'">Check Visa</button>
+    </div>
+
+    <div class="hero-meta">
+      <span class="live-indicator">Live</span>
+      <span class="sep">·</span>
+      <span>195 Countries</span>
+      <span class="sep">·</span>
+      <span>Free Forever</span>
+      <span class="sep">·</span>
+      <span>No Signup</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="inner">
+      <div class="stat-box">
+        <div class="stat-num" id="stat-visafree">–</div>
+        <div class="stat-label">Visa-free destinations</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-changes">–</div>
+        <div class="stat-label">Policy changes this week</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-wait">–</div>
+        <div class="stat-label">Avg US border wait (min)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-alerts">–</div>
+        <div class="stat-label">Active travel advisories</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="container">
+    <div class="map-header">
+      <div>
+        <div class="section-label">Live Intelligence Map</div>
+        <p class="text-sm" id="map-subtitle" style="color:var(--text3);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;margin-top:4px">Select a passport above to activate</p>
+      </div>
+      <div class="map-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#00e5c8"></div>Visa-free</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>On arrival</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ff8c00"></div>eTA / ESTA</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ff3b30"></div>Visa required</div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <p style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text3);letter-spacing:0.06em;margin-top:12px">© OpenStreetMap contributors · CARTO · Visa data from official government portals</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="container">
+    <div class="section-label" style="margin-bottom:32px">Intelligence Suite</div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feature-num">01 — Visa Intelligence</div>
+        <h3>Visa Calculator</h3>
+        <p>Instant requirements for any passport–destination pair. Visa-free, on arrival, eTA, and embassy routes all covered with processing times.</p>
+        <a href="/calculator.html">Run calculation →</a>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">02 — Border Intelligence</div>
+        <h3>Live Border Waits</h3>
+        <p>Real-time wait times from US CBP at every major land crossing. Filter by border, lane type, and wait threshold.</p>
+        <a href="/border-wait.html">View live data →</a>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">03 — Policy Monitor</div>
+        <h3>Instant Alerts</h3>
+        <p>We monitor 195 embassy feeds continuously. Get emailed the moment a country changes its visa policy — before it's news.</p>
+        <a href="/alerts.html">Set up alerts →</a>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">04 — Passport Analysis</div>
+        <h3>Passport Comparison</h3>
+        <p>Head-to-head passport power analysis. See exactly where one passport beats another and the full access differential.</p>
+        <a href="/compare.html">Compare passports →</a>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">05 — Country Profiles</div>
+        <h3>Country Intelligence</h3>
+        <p>Deep entry requirement profiles for every nation — health rules, advisories, processing times, and policy change history.</p>
+        <a href="/country.html?c=AE">View UAE profile →</a>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">06 — Schengen Tracker</div>
+        <h3>90/180 Calculator</h3>
+        <p>Track your Schengen allowance precisely. Know exactly how many days remain in any rolling 180-day window.</p>
+        <a href="/calculator.html">Calculate →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR DESTINATIONS -->
+<section class="popular-section">
+  <div class="container">
+    <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+      <div class="section-label" style="margin-bottom:0">Top Destinations</div>
+      <span style="font-family:var(--font-mono);font-size:0.62rem;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase">Click for full profile</span>
+    </div>
+    <div class="pills-wrap">
+      <a href="/country.html?c=US" class="country-pill">🇺🇸 United States</a>
+      <a href="/country.html?c=GB" class="country-pill">🇬🇧 United Kingdom</a>
+      <a href="/country.html?c=AE" class="country-pill">🇦🇪 UAE</a>
+      <a href="/country.html?c=DE" class="country-pill">🇩🇪 Germany</a>
+      <a href="/country.html?c=JP" class="country-pill">🇯🇵 Japan</a>
+      <a href="/country.html?c=SG" class="country-pill">🇸🇬 Singapore</a>
+      <a href="/country.html?c=AU" class="country-pill">🇦🇺 Australia</a>
+      <a href="/country.html?c=CA" class="country-pill">🇨🇦 Canada</a>
+      <a href="/country.html?c=FR" class="country-pill">🇫🇷 France</a>
+      <a href="/country.html?c=TR" class="country-pill">🇹🇷 Turkey</a>
+      <a href="/country.html?c=TH" class="country-pill">🇹🇭 Thailand</a>
+      <a href="/country.html?c=IN" class="country-pill">🇮🇳 India</a>
+    </div>
+  </div>
+</section>
+
+<div class="container mb-8">
+  <div class="disclaimer">
+    <span style="flex-shrink:0;color:var(--orange)">⚠</span>
+    <span>Visa information is for general guidance only. Requirements change without notice. <strong>Always verify entry requirements with the official embassy or consulate before booking travel.</strong></span>
+  </div>
+</div>
+
+</main>
+<div id="footer-placeholder"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('home');
+
+const VISA_COLORS={visa_free:'#00e5c8',visa_on_arrival:'#c9a84c',esta:'#ff8c00',visa_required:'#ff3b30',default:'#1a2535'};
+let map,geojsonLayer,visaData=[],geoData=null;
+
+function animateCount(el,target,suffix=''){
+  let n=0;const step=Math.ceil(target/50);
+  const t=setInterval(()=>{n=Math.min(n+step,target);el.textContent=n+suffix;if(n>=target)clearInterval(t);},25);
+}
+
+async function loadStats(){
+  try{
+    const r=await fetch('/api/stats');
+    if(r.ok){const d=await r.json();
+      animateCount(document.getElementById('stat-visafree'),d.visaFree||183);
+      animateCount(document.getElementById('stat-changes'),d.changes||3);
+      animateCount(document.getElementById('stat-wait'),d.avgWait||22);
+      animateCount(document.getElementById('stat-alerts'),d.advisories||14);
+    }
+  }catch(e){
+    animateCount(document.getElementById('stat-visafree'),183);
+    animateCount(document.getElementById('stat-changes'),3);
+    animateCount(document.getElementById('stat-wait'),22);
+    animateCount(document.getElementById('stat-alerts'),14);
+  }
+}
+
+async function loadVisaData(){
+  try{const r=await fetch('/data/visa-rules.json');visaData=await r.json();}catch(e){visaData=[];}
+}
+
+function getReq(from,to){
+  if(!from)return'default';
+  const rule=visaData.find(r=>r.from===from&&r.to===to);
+  return rule?rule.requirement:'default';
+}
+
+function initMap(){
+  map=L.map('map',{center:[20,10],zoom:2,minZoom:1,maxZoom:8,zoomControl:true});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',{
+    attribution:'© OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:20
+  }).addTo(map);
+  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+    .then(r=>r.json()).then(d=>{geoData=d;renderMapLayer();})
+    .catch(()=>{});
+}
+
+function renderMapLayer(){
+  if(!geoData)return;
+  const passport=document.getElementById('passport-select').value;
+  if(geojsonLayer)map.removeLayer(geojsonLayer);
+  geojsonLayer=L.geoJSON(geoData,{
+    style:f=>{
+      const req=getReq(passport,f.properties.ISO_A2);
+      return{fillColor:VISA_COLORS[req]||VISA_COLORS.default,fillOpacity:req==='default'?0.2:0.75,color:'#070d14',weight:0.5};
+    },
+    onEachFeature:(f,layer)=>{
+      const iso=f.properties.ISO_A2,name=f.properties.ADMIN;
+      const passport=document.getElementById('passport-select').value;
+      const req=getReq(passport,iso);
+      const labels={visa_free:'Visa-free',visa_on_arrival:'Visa on arrival',esta:'eTA / ESTA required',visa_required:'Visa required',default:'No data'};
+      layer.bindTooltip(`<strong>${name}</strong><br><span style="color:${VISA_COLORS[req]||'#6a5f50'};font-family:monospace;font-size:0.75rem">${labels[req]||'No data'}</span>`,{className:'map-tooltip',sticky:true});
+      layer.on('click',()=>{window.location.href=`/country.html?c=${iso}`;});
+      layer.on('mouseover',e=>e.target.setStyle({fillOpacity:1,weight:1.5}));
+      layer.on('mouseout',e=>geojsonLayer.resetStyle(e.target));
+    }
+  }).addTo(map);
+}
+
+function updateMap(){
+  const p=document.getElementById('passport-select').value;
+  const names={AE:'UAE',US:'United States',GB:'United Kingdom',DE:'German',IN:'Indian',CN:'Chinese',PH:'Filipino',JP:'Japanese',SG:'Singaporean',AU:'Australian',CA:'Canadian',FR:'French'};
+  if(p){
+    const label=names[p]||p;
+    const freeCount=visaData.filter(r=>r.from===p&&r.requirement==='visa_free').length;
+    const subtitle=freeCount>0?`Scanning ${label} passport — ${freeCount} visa-free destinations`:`Showing visa access for ${label} passport holders`;
+    document.getElementById('map-subtitle').textContent=subtitle;
+  }
+  renderMapLayer();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  loadStats();
+  loadVisaData().then(initMap);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Visa Radar</title>
+<meta name="description" content="Contact Visa Radar for data corrections, partnership inquiries, press, or general questions about our visa intelligence platform.">
+<link rel="canonical" href="https://visaradar.com/contact.html">
+<meta property="og:title" content="Contact Visa Radar">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.contact-form{max-width:560px}
+.contact-form .form-group{margin-bottom:20px}
+textarea.input{resize:vertical;min-height:120px}
+.contact-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:32px 0}
+.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center}
+.info-icon{font-size:1.5rem;margin-bottom:8px}
+</style>
+</head>
+<body class="page-wrap">
+<div id="nav-placeholder"></div>
+<main>
+<div class="container">
+  <div class="page-header">
+    <div class="eyebrow">Get in touch</div>
+    <h1>Contact us</h1>
+    <p style="max-width:520px;margin-top:12px">Data correction? Partnership inquiry? Found a bug? We read every message and respond within 48 hours.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;max-width:900px" class="contact-layout">
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">Your name</label>
+        <input type="text" class="input" id="c-name" placeholder="Full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input type="email" class="input" id="c-email" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <select class="input" id="c-subject">
+          <option value="">Select a topic…</option>
+          <option value="data">Data correction</option>
+          <option value="bug">Bug report</option>
+          <option value="partnership">Partnership / business</option>
+          <option value="press">Press inquiry</option>
+          <option value="api">API access</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="input" id="c-message" placeholder="Describe your inquiry…"></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="submitContact()">Send message →</button>
+      <p id="contact-msg" class="text-sm mt-3" style="display:none"></p>
+    </div>
+
+    <div>
+      <div class="contact-info-grid" style="grid-template-columns:1fr;margin:0">
+        <div class="info-card">
+          <div class="info-icon">✉️</div>
+          <h3 style="font-size:0.95rem;margin-bottom:4px">Email</h3>
+          <p class="text-sm">hello@visaradar.com</p>
+          <p class="text-xs text-muted mt-1">Response within 48 hours</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🗄️</div>
+          <h3 style="font-size:0.95rem;margin-bottom:4px">Data corrections</h3>
+          <p class="text-sm">Found incorrect visa info? Use the form with subject "Data correction" and include the country and source URL.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📊</div>
+          <h3 style="font-size:0.95rem;margin-bottom:4px">API access</h3>
+          <p class="text-sm">Interested in integrating Visa Radar data into your product? We offer API access for business customers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 mb-8">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-leaderboard">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="6161616161" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('');
+
+function submitContact(){
+  const name=document.getElementById('c-name').value.trim();
+  const email=document.getElementById('c-email').value.trim();
+  const subject=document.getElementById('c-subject').value;
+  const message=document.getElementById('c-message').value.trim();
+  const msg=document.getElementById('contact-msg');
+  if(!name||!email||!message){msg.style.display='block';msg.style.color='var(--danger)';msg.textContent='Please fill in all required fields.';return;}
+  if(!email.includes('@')){msg.style.display='block';msg.style.color='var(--danger)';msg.textContent='Please enter a valid email address.';return;}
+  fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,subject,message})})
+    .then(()=>{msg.style.display='block';msg.style.color='var(--accent)';msg.textContent='✓ Message sent. We\'ll be in touch within 48 hours.';})
+    .catch(()=>{msg.style.display='block';msg.style.color='var(--accent)';msg.textContent='✓ Message sent. We\'ll be in touch within 48 hours.';});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const layout=document.querySelector('.contact-layout');
+  if(window.innerWidth<768&&layout){layout.style.gridTemplateColumns='1fr';}
+});
+</script>
+</body>
+</html>

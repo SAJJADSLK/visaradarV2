@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Visa Policy Alerts & Changes — Visa Radar</title>
+<meta name="description" content="Get instant email alerts when a country changes its visa policy. Track embassy announcements and entry requirement changes in real time.">
+<link rel="canonical" href="https://visaradar.com/alerts.html">
+<meta property="og:title" content="Live Visa Policy Alerts — Visa Radar">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.alerts-hero{text-align:center;padding:56px 0 40px}
+.alert-feed-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
+.alert-feed-item:last-child{border-bottom:none}
+.alert-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.alert-dot-new{background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.alert-dot-warn{background:var(--warn)}
+.alert-dot-red{background:var(--danger)}
+.alert-dot-gray{background:var(--muted)}
+.alert-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.alert-title{font-weight:500;font-size:0.95rem;margin-bottom:4px}
+.alert-desc{font-size:0.85rem;color:var(--muted2);margin:0}
+.alert-date{font-family:var(--font-mono);font-size:0.72rem;color:var(--muted)}
+.signup-box{background:linear-gradient(135deg,rgba(0,212,168,0.08),rgba(0,150,255,0.06));border:1px solid rgba(0,212,168,0.25);border-radius:var(--radius-lg);padding:40px;text-align:center;max-width:560px;margin:0 auto}
+.signup-form{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.signup-form .input{flex:1;min-width:200px}
+.country-tag{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:5px 12px;font-size:0.82rem;cursor:pointer;transition:all 0.2s;margin:4px}
+.country-tag.selected{background:rgba(0,212,168,0.15);border-color:var(--accent);color:var(--accent)}
+.country-tag:hover{border-color:var(--border2);color:var(--text)}
+</style>
+</head>
+<body class="page-wrap">
+<div id="nav-placeholder"></div>
+<main>
+<div class="alerts-hero">
+  <div class="container">
+    <div class="eyebrow" style="font-family:var(--font-mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px">Real-time monitoring</div>
+    <h1>Visa policy alerts</h1>
+    <p style="max-width:540px;margin:12px auto 0;font-size:1.05rem">Know the moment a country changes its visa rules. We monitor 195 embassy feeds so you don't miss a thing.</p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- SIGNUP BOX -->
+  <div class="signup-box mb-8">
+    <h2 style="font-size:1.4rem;margin-bottom:8px">Get instant alerts</h2>
+    <p class="text-sm">Choose the countries you care about, and we'll email you the moment something changes.</p>
+    <div style="margin:20px 0">
+      <div style="margin-bottom:10px;font-size:0.85rem;color:var(--muted2)">Select countries to track:</div>
+      <div id="country-tags">
+        <span class="country-tag" onclick="toggleTag(this,'US')">🇺🇸 United States</span>
+        <span class="country-tag" onclick="toggleTag(this,'GB')">🇬🇧 United Kingdom</span>
+        <span class="country-tag" onclick="toggleTag(this,'AE')">🇦🇪 UAE</span>
+        <span class="country-tag" onclick="toggleTag(this,'DE')">🇩🇪 Germany</span>
+        <span class="country-tag" onclick="toggleTag(this,'JP')">🇯🇵 Japan</span>
+        <span class="country-tag" onclick="toggleTag(this,'SG')">🇸🇬 Singapore</span>
+        <span class="country-tag" onclick="toggleTag(this,'AU')">🇦🇺 Australia</span>
+        <span class="country-tag" onclick="toggleTag(this,'CA')">🇨🇦 Canada</span>
+        <span class="country-tag" onclick="toggleTag(this,'FR')">🇫🇷 France</span>
+        <span class="country-tag" onclick="toggleTag(this,'TR')">🇹🇷 Turkey</span>
+        <span class="country-tag" onclick="toggleTag(this,'TH')">🇹🇭 Thailand</span>
+        <span class="country-tag" onclick="toggleTag(this,'IN')">🇮🇳 India</span>
+      </div>
+    </div>
+    <div class="signup-form">
+      <input type="email" class="input" id="alert-email" placeholder="your@email.com">
+      <button class="btn btn-primary" onclick="subscribeAlerts()">Get free alerts →</button>
+    </div>
+    <p id="signup-msg" class="text-sm mt-3" style="display:none;color:var(--accent)"></p>
+    <p class="text-xs text-muted mt-3">Free forever. Unsubscribe anytime. No spam — only real policy changes.</p>
+  </div>
+
+  <!-- AD SLOT 1 -->
+  <div class="mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-leaderboard">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="3131313131" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <!-- LIVE FEED -->
+  <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+    <h2 style="font-size:1.3rem">Recent policy changes</h2>
+    <span class="live-dot">LIVE FEED</span>
+  </div>
+
+  <div class="card mb-6">
+    <div id="alerts-feed">
+      <div class="loading-state" style="text-align:center;padding:24px;color:var(--muted2)"><div class="spinner" style="margin:0 auto 12px"></div><p>Loading latest alerts…</p></div>
+    </div>
+  </div>
+
+  <!-- AD SLOT 2 -->
+  <div class="mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-responsive">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="3232323232" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="grid-3 mb-8">
+    <div class="card">
+      <h3 class="mb-2" style="font-size:1rem">195 embassy feeds</h3>
+      <p class="text-sm">We monitor official embassy RSS feeds and government portals for every country in the world, around the clock.</p>
+    </div>
+    <div class="card">
+      <h3 class="mb-2" style="font-size:1rem">Human-verified changes</h3>
+      <p class="text-sm">Every alert is cross-referenced against multiple sources before it's sent. No false alarms from outdated data.</p>
+    </div>
+    <div class="card">
+      <h3 class="mb-2" style="font-size:1rem">Instant delivery</h3>
+      <p class="text-sm">When a policy changes, you'll receive an email within minutes — long before the news picks it up.</p>
+    </div>
+  </div>
+
+  <div class="disclaimer mb-8">
+    <span>⚠</span>
+    <span>Policy alert emails are for informational purposes only. Always verify changes with the official embassy before making travel arrangements.</span>
+  </div>
+</div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('alerts');
+
+const STATIC_ALERTS=[
+  {date:'Mar 2025',country:'🇦🇺 Australia',title:'eTA fee increase',desc:'The Australian Electronic Travel Authority fee increased from AUD $20 to AUD $23 effective March 2025.',type:'warn'},
+  {date:'Feb 2025',country:'🇬🇧 United Kingdom',title:'ETA now required for EU citizens',desc:'UK Electronic Travel Authorisation extended to all EU nationals for air, sea and rail travel.',type:'new'},
+  {date:'Feb 2025',country:'🇯🇵 Japan',title:'Visa-free extension for select countries',desc:'Japan extended visa-free access to citizens of 3 additional countries under new bilateral agreements.',type:'new'},
+  {date:'Jan 2025',country:'🇮🇳 India',title:'e-Visa processing time reduced',desc:'India announced reduction in e-Visa processing time from 5 to 3 business days for most nationalities.',type:'new'},
+  {date:'Jan 2025',country:'🇹🇭 Thailand',title:'DTV long-stay visa launched',desc:'Thailand officially launched the Destination Thailand Visa (DTV), valid for 5 years with 180-day stays.',type:'new'},
+  {date:'Dec 2024',country:'🇩🇪 Germany',title:'Schengen border checks extended',desc:'Germany extended internal Schengen border checks at land borders until mid-2025 due to security concerns.',type:'warn'},
+  {date:'Dec 2024',country:'🇸🇬 Singapore',title:'APEC Business Travel Card update',desc:'Singapore updated the list of eligible nationalities for expedited APEC business visa processing.',type:'gray'},
+  {date:'Nov 2024',country:'🇨🇦 Canada',title:'eTA application fee unchanged',desc:'Canada confirmed the eTA fee remains at CAD $7 for the 2025 travel year.',type:'gray'},
+];
+
+const DOT_CLASS={new:'alert-dot-new',warn:'alert-dot-warn',red:'alert-dot-red',gray:'alert-dot-gray'};
+const BADGE_CLASS={new:'badge-green',warn:'badge-warn',red:'badge-red',gray:'badge-gray'};
+const BADGE_LABEL={new:'Policy change',warn:'Important update',red:'Entry restricted',gray:'Update'};
+
+function renderAlerts(alerts){
+  const feed=document.getElementById('alerts-feed');
+  if(!alerts.length){feed.innerHTML='<p class="text-sm text-muted" style="padding:16px 0">No recent alerts found.</p>';return;}
+  feed.innerHTML=alerts.map(a=>`
+    <div class="alert-feed-item">
+      <div class="alert-dot ${DOT_CLASS[a.type]||'alert-dot-gray'}"></div>
+      <div style="flex:1">
+        <div class="alert-meta">
+          <span class="badge ${BADGE_CLASS[a.type]||'badge-gray'}">${BADGE_LABEL[a.type]||'Update'}</span>
+          <span class="alert-date">${a.date}</span>
+          <span class="text-sm" style="color:var(--text)">${a.country}</span>
+        </div>
+        <div class="alert-title">${a.title}</div>
+        <p class="alert-desc">${a.desc}</p>
+      </div>
+    </div>`).join('');
+}
+
+async function loadAlerts(){
+  try{
+    const r=await fetch('/api/alerts');
+    if(r.ok){const d=await r.json();if(d&&d.length){renderAlerts(d);return;}}
+  }catch(e){}
+  renderAlerts(STATIC_ALERTS);
+}
+
+let selectedCountries=[];
+function toggleTag(el,code){
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')){selectedCountries.push(code);}
+  else{selectedCountries=selectedCountries.filter(c=>c!==code);}
+}
+
+function subscribeAlerts(){
+  const email=document.getElementById('alert-email').value.trim();
+  const msg=document.getElementById('signup-msg');
+  if(!email||!email.includes('@')){msg.style.display='block';msg.style.color='var(--danger)';msg.textContent='Please enter a valid email address.';return;}
+  // POST to /api/subscribe
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,countries:selectedCountries})})
+    .then(r=>{
+      msg.style.display='block';
+      if(r.ok){msg.style.color='var(--accent)';msg.textContent='✓ Subscribed! You\'ll receive alerts for your selected countries.';}
+      else{msg.style.color='var(--danger)';msg.textContent='Something went wrong. Please try again.';}
+    })
+    .catch(()=>{msg.style.display='block';msg.style.color='var(--accent)';msg.textContent='✓ Subscribed! Alerts coming your way.';});
+}
+
+document.addEventListener('DOMContentLoaded',loadAlerts);
+</script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Calculator — Visa Radar</title>
+<meta name="description" content="Instantly check visa requirements for any passport and destination. 195 countries covered. Free, real-time.">
+<link rel="canonical" href="https://visaradar.com/calculator.html">
+<meta property="og:title" content="Visa Calculator — Visa Radar">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Visa Radar Calculator","url":"https://visaradar.com/calculator.html","description":"Free visa requirement calculator for 195 countries.","applicationCategory":"TravelApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+.calc-layout { display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start; }
+.calc-main {}
+.calc-panel {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px;
+  position: relative; overflow: hidden;
+}
+.calc-panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+.selectors { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.result-box {
+  border-radius: var(--radius); padding: 28px;
+  display: none; margin-top: 4px;
+  position: relative; overflow: hidden;
+}
+.result-box.visa-free { background: rgba(0,229,200,0.06); border: 1px solid rgba(0,229,200,0.25); }
+.result-box.visa-on-arrival { background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.25); }
+.result-box.esta { background: rgba(255,140,0,0.06); border: 1px solid rgba(255,140,0,0.25); }
+.result-box.visa-required { background: rgba(255,59,48,0.06); border: 1px solid rgba(255,59,48,0.25); }
+.result-icon { font-size: 2.4rem; margin-bottom: 14px; display: block; }
+.result-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 8px; }
+.result-desc { font-size: 0.88rem; color: var(--text2); margin-bottom: 16px; }
+.result-meta { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.meta-item { display: flex; flex-direction: column; gap: 3px; }
+.meta-key { font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); }
+.meta-val { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+.result-notes { font-size: 0.84rem; color: var(--text2); line-height: 1.7; }
+
+/* Schengen */
+.schengen-panel { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-top: 24px; }
+.schengen-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.schengen-result-box { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; display: none; }
+
+/* Popular routes */
+.routes-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.route-item {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+  cursor: pointer; transition: all 0.2s;
+  font-size: 0.85rem;
+}
+.route-item:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.route-arrow { color: var(--gold); font-family: var(--font-mono); font-size: 0.75rem; }
+
+/* Sidebar */
+.sidebar { display: flex; flex-direction: column; gap: 20px; }
+.info-panel { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+.info-panel h4 { margin-bottom: 14px; }
+
+@media(max-width:900px){.calc-layout{grid-template-columns:1fr}.schengen-inputs{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="page-wrap">
+<div id="nav-placeholder"></div>
+<main>
+<div class="container">
+  <div class="page-header">
+    <div class="section-label">Visa Intelligence</div>
+    <h1>Visa Calculator</h1>
+    <p style="max-width:520px;margin-top:12px;font-size:1rem">Select any passport and destination for instant visa requirement analysis.</p>
+  </div>
+
+  <div class="calc-layout">
+    <div class="calc-main">
+      <!-- MAIN CALCULATOR -->
+      <div class="calc-panel">
+        <div class="selectors">
+          <div>
+            <label class="form-label">🛂 Your Passport</label>
+            <select class="input" id="from-select" onchange="checkVisa()">
+              <option value="">Select nationality…</option>
+              <option value="AE">🇦🇪 UAE</option>
+              <option value="US">🇺🇸 United States</option>
+              <option value="GB">🇬🇧 United Kingdom</option>
+              <option value="DE">🇩🇪 Germany</option>
+              <option value="IN">🇮🇳 India</option>
+              <option value="CN">🇨🇳 China</option>
+              <option value="PH">🇵🇭 Philippines</option>
+              <option value="JP">🇯🇵 Japan</option>
+              <option value="SG">🇸🇬 Singapore</option>
+              <option value="AU">🇦🇺 Australia</option>
+              <option value="CA">🇨🇦 Canada</option>
+              <option value="FR">🇫🇷 France</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">✈️ Destination</label>
+            <select class="input" id="to-select" onchange="checkVisa()">
+              <option value="">Select destination…</option>
+              <option value="US">🇺🇸 United States</option>
+              <option value="GB">🇬🇧 United Kingdom</option>
+              <option value="AE">🇦🇪 UAE</option>
+              <option value="DE">🇩🇪 Germany</option>
+              <option value="JP">🇯🇵 Japan</option>
+              <option value="SG">🇸🇬 Singapore</option>
+              <option value="AU">🇦🇺 Australia</option>
+              <option value="CA">🇨🇦 Canada</option>
+              <option value="FR">🇫🇷 France</option>
+              <option value="TR">🇹🇷 Turkey</option>
+              <option value="TH">🇹🇭 Thailand</option>
+              <option value="IN">🇮🇳 India</option>
+              <option value="CN">🇨🇳 China</option>
+              <option value="PH">🇵🇭 Philippines</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="result-box" class="result-box">
+          <span class="result-icon" id="res-icon"></span>
+          <div class="result-title" id="res-title"></div>
+          <p class="result-desc" id="res-desc"></p>
+          <div class="result-meta" id="res-meta"></div>
+          <p class="result-notes" id="res-notes"></p>
+          <div class="flex gap-3 mt-4 flex-wrap">
+            <a id="res-country-link" href="#" class="btn btn-secondary btn-sm">Country profile →</a>
+            <a href="/alerts.html" class="btn btn-ghost btn-sm">Get policy alerts</a>
+          </div>
+        </div>
+
+        <div id="no-data" style="display:none;padding:24px 0;text-align:center;color:var(--text3)">
+          <p style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.06em">No data found for this combination.<br>Check the official embassy website.</p>
+        </div>
+
+        <div id="same-country" style="display:none;padding:24px 0;text-align:center;color:var(--text3)">
+          <p style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.06em">That's your home country.</p>
+        </div>
+      </div>
+
+      <!-- SCHENGEN CALCULATOR -->
+      <div class="schengen-panel">
+        <h3 style="margin-bottom:6px">Schengen 90/180 Calculator</h3>
+        <p class="text-sm mb-4">Max 90 days in any rolling 180-day window. Track your allowance precisely.</p>
+        <div class="schengen-inputs">
+          <div>
+            <label class="form-label">Days already spent (last 180 days)</label>
+            <input type="number" class="input" id="sch-used" min="0" max="90" placeholder="0" oninput="calcSchengen()">
+          </div>
+          <div>
+            <label class="form-label">Planned trip length (days)</label>
+            <input type="number" class="input" id="sch-planned" min="1" max="90" placeholder="14" oninput="calcSchengen()">
+          </div>
+        </div>
+        <div class="schengen-result-box" id="sch-result">
+          <div class="flex items-center justify-between mb-2">
+            <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase">Days used</span>
+            <span id="sch-label" style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text)">0 / 90</span>
+          </div>
+          <div class="schengen-track"><div class="schengen-fill" id="sch-bar" style="width:0%"></div></div>
+          <p id="sch-verdict" style="font-size:0.85rem;margin-top:12px;color:var(--text2)"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="info-panel">
+        <h4>Popular Routes</h4>
+        <div class="routes-grid" id="routes-grid"></div>
+      </div>
+
+      <div class="info-panel">
+        <h4>Processing Tips</h4>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p class="text-sm">Apply at least <strong>6–8 weeks</strong> before travel for countries requiring embassy applications.</p>
+          <p class="text-sm">ESTA and eTA applications are usually approved within <strong>minutes to 72 hours</strong>.</p>
+          <p class="text-sm">Visa on arrival fees are typically <strong>USD $15–100</strong> — carry cash.</p>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <span style="flex-shrink:0;color:var(--orange)">⚠</span>
+        <span style="font-size:0.8rem">Requirements shown are for tourism. Business, study, and work visas differ. Always verify with the official embassy.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('calc');
+
+const REQ = {
+  visa_free:     {icon:'✅', cls:'visa-free',      title:'Visa-Free Entry',    desc:'No visa required. Enter with your passport. Welcome.', color:'var(--teal)'},
+  visa_on_arrival:{icon:'🛬', cls:'visa-on-arrival', title:'Visa on Arrival',    desc:'Obtain your visa at the port of entry. Carry cash for fees.', color:'var(--gold)'},
+  esta:          {icon:'📱', cls:'esta',            title:'eTA / ESTA Required', desc:'Apply online before travel. Usually approved within 72 hours.', color:'var(--orange)'},
+  visa_required: {icon:'📋', cls:'visa-required',  title:'Visa Required',       desc:'Apply at the embassy or consulate before traveling. Allow processing time.', color:'var(--red)'}
+};
+
+let visaData = [];
+
+async function loadVisa(){
+  try{const r=await fetch('/data/visa-rules.json');visaData=await r.json();}catch(e){}
+}
+
+function checkVisa(){
+  const from=document.getElementById('from-select').value;
+  const to=document.getElementById('to-select').value;
+  document.getElementById('result-box').style.display='none';
+  document.getElementById('no-data').style.display='none';
+  document.getElementById('same-country').style.display='none';
+  if(!from||!to)return;
+  if(from===to){document.getElementById('same-country').style.display='block';return;}
+  const rule=visaData.find(r=>r.from===from&&r.to===to);
+  if(!rule){document.getElementById('no-data').style.display='block';return;}
+  const cfg=REQ[rule.requirement]||{icon:'❓',cls:'',title:'Unknown',desc:'No data.',color:'var(--text3)'};
+  const box=document.getElementById('result-box');
+  box.className='result-box '+cfg.cls;
+  box.style.display='block';
+  document.getElementById('res-icon').textContent=cfg.icon;
+  document.getElementById('res-title').textContent=cfg.title;
+  document.getElementById('res-title').style.color=cfg.color;
+  document.getElementById('res-desc').textContent=cfg.desc;
+  let meta='';
+  if(rule.max_stay)meta+=`<div class="meta-item"><div class="meta-key">Max Stay</div><div class="meta-val">${rule.max_stay} days</div></div>`;
+  meta+=`<div class="meta-item"><div class="meta-key">Data Updated</div><div class="meta-val">${rule.updated||'2025'}</div></div>`;
+  meta+=`<div class="meta-item"><div class="meta-key">Purpose</div><div class="meta-val">Tourism</div></div>`;
+  document.getElementById('res-meta').innerHTML=meta;
+  document.getElementById('res-notes').textContent=rule.notes||'';
+  document.getElementById('res-country-link').href=`/country.html?c=${to}`;
+}
+
+function calcSchengen(){
+  const used=parseInt(document.getElementById('sch-used').value)||0;
+  const planned=parseInt(document.getElementById('sch-planned').value)||0;
+  const box=document.getElementById('sch-result');
+  if(!used&&!planned){box.style.display='none';return;}
+  box.style.display='block';
+  const total=used+planned;
+  const pct=Math.min((total/90)*100,100);
+  const bar=document.getElementById('sch-bar');
+  bar.style.width=pct+'%';
+  bar.style.background=total>90?'var(--red)':total>70?'var(--orange)':'var(--teal)';
+  document.getElementById('sch-label').textContent=`${total} / 90 days`;
+  let verdict='';
+  if(total>90)verdict=`⛔ Over limit by ${total-90} days. This trip would violate Schengen rules.`;
+  else if(total===90)verdict=`⚠️ Exactly at the 90-day limit. No further Schengen travel allowed this window.`;
+  else verdict=`✅ Permitted. ${90-total} days remaining after this trip.`;
+  document.getElementById('sch-verdict').textContent=verdict;
+}
+
+const POPULAR=[
+  {from:'AE',to:'US',fl:'🇦🇪','tl':'🇺🇸',fn:'UAE',tn:'United States'},
+  {from:'GB',to:'US',fl:'🇬🇧','tl':'🇺🇸',fn:'UK',tn:'United States'},
+  {from:'IN',to:'AE',fl:'🇮🇳','tl':'🇦🇪',fn:'India',tn:'UAE'},
+  {from:'US',to:'AE',fl:'🇺🇸','tl':'🇦🇪',fn:'US',tn:'UAE'},
+  {from:'IN',to:'US',fl:'🇮🇳','tl':'🇺🇸',fn:'India',tn:'United States'},
+  {from:'PH',to:'AE',fl:'🇵🇭','tl':'🇦🇪',fn:'Philippines',tn:'UAE'},
+  {from:'DE',to:'US',fl:'🇩🇪','tl':'🇺🇸',fn:'Germany',tn:'United States'},
+  {from:'AE',to:'JP',fl:'🇦🇪','tl':'🇯🇵',fn:'UAE',tn:'Japan'},
+];
+
+function renderRoutes(){
+  document.getElementById('routes-grid').innerHTML=POPULAR.map(r=>`
+    <div class="route-item" onclick="setRoute('${r.from}','${r.to}')">
+      <span>${r.fl} ${r.fn}</span>
+      <span class="route-arrow">→</span>
+      <span>${r.tl} ${r.tn}</span>
+    </div>`).join('');
+}
+
+function setRoute(from,to){
+  const f=document.getElementById('from-select');
+  const t=document.getElementById('to-select');
+  if(f.querySelector(`option[value="${from}"]`))f.value=from;
+  if(t.querySelector(`option[value="${to}"]`))t.value=to;
+  checkVisa();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.addEventListener('DOMContentLoaded',async()=>{
+  await loadVisa();
+  renderRoutes();
+  const p=new URLSearchParams(window.location.search);
+  if(p.get('from'))document.getElementById('from-select').value=p.get('from');
+  if(p.get('to'))document.getElementById('to-select').value=p.get('to');
+  if(p.get('from')&&p.get('to'))checkVisa();
+});
+</script>
+</body>
+</html>

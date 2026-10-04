@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passport Power Comparison — Visa Radar</title>
+<meta name="description" content="Compare any two passports side by side. Visa-free access, passport power rankings, and full differential analysis.">
+<link rel="canonical" href="https://visaradar.com/compare.html">
+<meta property="og:title" content="Passport Comparison — Visa Radar">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.compare-selectors {
+  display: grid; grid-template-columns: 1fr 80px 1fr;
+  gap: 16px; align-items: end;
+  max-width: 700px; margin: 0 auto 48px;
+}
+.vs-center {
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 10px;
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+  color: var(--gold); letter-spacing: 0.1em; opacity: 0.6;
+}
+.compare-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.passport-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px;
+  position: relative; overflow: hidden;
+}
+.passport-card.winner { border-color: var(--gold); }
+.passport-card.winner::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.passport-flag { font-size: 3.5rem; margin-bottom: 12px; display: block; }
+.passport-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 16px; }
+.power-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+.power-score { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.power-sub { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text3); margin-bottom: 16px; }
+.access-list { margin-top: 20px; }
+.access-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 0; border-bottom: 1px solid var(--border);
+  font-size: 0.83rem;
+}
+.access-row:last-child { border-bottom: none; }
+.access-dest { color: var(--text2); }
+
+.diff-section {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px; margin-top: 28px;
+}
+.diff-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 0; border-bottom: 1px solid var(--border);
+  font-size: 0.85rem; gap: 16px;
+}
+.diff-row:last-child { border-bottom: none; }
+.diff-dest { font-weight: 500; color: var(--text); flex: 1; }
+.diff-statuses { display: flex; gap: 12px; }
+
+.winner-banner {
+  display: none;
+  background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25);
+  border-radius: var(--radius); padding: 14px 20px;
+  text-align: center; margin-bottom: 24px;
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+@media(max-width:700px){
+  .compare-cols{grid-template-columns:1fr}
+  .compare-selectors{grid-template-columns:1fr;gap:8px}
+  .vs-center{display:none}
+}
+</style>
+</head>
+<body class="page-wrap">
+<div id="nav-placeholder"></div>
+<main>
+<div class="container">
+  <div class="page-header">
+    <div class="section-label">Passport Analysis</div>
+    <h1>Passport Comparison</h1>
+    <p style="max-width:520px;margin-top:12px">Head-to-head passport power analysis. See the full access differential between any two passports.</p>
+  </div>
+
+  <div class="compare-selectors">
+    <div>
+      <label class="form-label">First Passport</label>
+      <select class="input" id="passport-a" onchange="runCompare()">
+        <option value="">Select passport…</option>
+        <option value="AE">🇦🇪 UAE</option>
+        <option value="US">🇺🇸 United States</option>
+        <option value="GB">🇬🇧 United Kingdom</option>
+        <option value="DE">🇩🇪 Germany</option>
+        <option value="IN">🇮🇳 India</option>
+        <option value="CN">🇨🇳 China</option>
+        <option value="PH">🇵🇭 Philippines</option>
+        <option value="JP">🇯🇵 Japan</option>
+      </select>
+    </div>
+    <div class="vs-center">VS</div>
+    <div>
+      <label class="form-label">Second Passport</label>
+      <select class="input" id="passport-b" onchange="runCompare()">
+        <option value="">Select passport…</option>
+        <option value="AE">🇦🇪 UAE</option>
+        <option value="US">🇺🇸 United States</option>
+        <option value="GB">🇬🇧 United Kingdom</option>
+        <option value="DE">🇩🇪 Germany</option>
+        <option value="IN">🇮🇳 India</option>
+        <option value="CN">🇨🇳 China</option>
+        <option value="PH">🇵🇭 Philippines</option>
+        <option value="JP">🇯🇵 Japan</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="winner-banner" class="winner-banner"></div>
+
+  <div id="compare-output" style="display:none">
+    <div class="compare-cols">
+      <div class="passport-card bracket-card" id="card-a"></div>
+      <div class="passport-card bracket-card" id="card-b"></div>
+    </div>
+    <div class="diff-section" id="diff-section">
+      <h3 style="margin-bottom:20px">Key Differences</h3>
+      <div id="diff-list"></div>
+    </div>
+  </div>
+
+  <div id="compare-prompt" style="text-align:center;padding:64px 0;color:var(--text3);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase">
+    Select two passports above to begin analysis
+  </div>
+
+  <div class="disclaimer mt-8 mb-8">
+    <span style="flex-shrink:0;color:var(--orange)">⚠</span>
+    <span style="font-size:0.8rem">Passport power scores are approximate based on available data. Always verify entry requirements with the official embassy before travel.</span>
+  </div>
+</div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('compare');
+
+const PASSPORTS = {
+  AE:{name:'United Arab Emirates',flag:'🇦🇪',power:180},
+  US:{name:'United States',flag:'🇺🇸',power:186},
+  GB:{name:'United Kingdom',flag:'🇬🇧',power:188},
+  DE:{name:'Germany',flag:'🇩🇪',power:190},
+  IN:{name:'India',flag:'🇮🇳',power:58},
+  CN:{name:'China',flag:'🇨🇳',power:80},
+  PH:{name:'Philippines',flag:'🇵🇭',power:66},
+  JP:{name:'Japan',flag:'🇯🇵',power:193}
+};
+
+const DESTS = ['US','GB','AE','DE','JP','SG','AU','CA','FR','TR','TH','IN','CN','PH'];
+const DEST_INFO = {
+  US:{name:'United States',flag:'🇺🇸'},GB:{name:'United Kingdom',flag:'🇬🇧'},
+  AE:{name:'UAE',flag:'🇦🇪'},DE:{name:'Germany',flag:'🇩🇪'},
+  JP:{name:'Japan',flag:'🇯🇵'},SG:{name:'Singapore',flag:'🇸🇬'},
+  AU:{name:'Australia',flag:'🇦🇺'},CA:{name:'Canada',flag:'🇨🇦'},
+  FR:{name:'France',flag:'🇫🇷'},TR:{name:'Turkey',flag:'🇹🇷'},
+  TH:{name:'Thailand',flag:'🇹🇭'},IN:{name:'India',flag:'🇮🇳'},
+  CN:{name:'China',flag:'🇨🇳'},PH:{name:'Philippines',flag:'🇵🇭'}
+};
+
+const REQ_LABELS = {
+  visa_free:{label:'Visa-free',cls:'status-free'},
+  visa_on_arrival:{label:'On arrival',cls:'status-arrival'},
+  esta:{label:'eTA / ESTA',cls:'status-eta'},
+  visa_required:{label:'Visa req.',cls:'status-required'}
+};
+
+let visaData = [];
+
+async function loadVisa(){
+  try{const r=await fetch('/data/visa-rules.json');visaData=await r.json();}catch(e){}
+}
+
+function getReq(from,to){
+  const rule=visaData.find(r=>r.from===from&&r.to===to);
+  return rule?rule.requirement:null;
+}
+
+function buildCard(code, elId, isWinner){
+  const p=PASSPORTS[code];
+  const el=document.getElementById(elId);
+  el.classList.toggle('winner', isWinner);
+  const pct=Math.round((p.power/193)*100);
+  const freeCount=DESTS.filter(d=>d!==code&&getReq(code,d)==='visa_free').length;
+  const rows=DESTS.filter(d=>d!==code).map(d=>{
+    const req=getReq(code,d);
+    const cfg=req?REQ_LABELS[req]:null;
+    return`<div class="access-row">
+      <span class="access-dest">${DEST_INFO[d]?.flag||''} ${DEST_INFO[d]?.name||d}</span>
+      <span class="${cfg?cfg.cls:'status-nodata'} status-pill" style="font-size:0.65rem;padding:3px 8px">${cfg?cfg.label:'No data'}</span>
+    </div>`;
+  }).join('');
+  el.innerHTML=`
+    <span class="passport-flag">${p.flag}</span>
+    <div class="passport-name">${p.name}</div>
+    <div class="power-label">Passport Power Score</div>
+    <div class="power-score">${p.power}<span style="font-size:1rem;color:var(--text3);font-family:var(--font-body);font-weight:300"> / 193</span></div>
+    <div class="power-sub">Visa-free access to ${freeCount} destinations (in dataset)</div>
+    <div class="power-bar-wrap" style="margin-bottom:20px">
+      <div class="power-bar-track"><div class="power-bar-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="access-list">${rows}</div>`;
+}
+
+function buildDiff(codeA, codeB){
+  const diffs=[];
+  DESTS.forEach(dest=>{
+    if(dest===codeA||dest===codeB)return;
+    const ra=getReq(codeA,dest);
+    const rb=getReq(codeB,dest);
+    if(ra&&rb&&ra!==rb){
+      diffs.push({dest,ra,rb});
+    }
+  });
+  const el=document.getElementById('diff-list');
+  if(!diffs.length){el.innerHTML=`<p style="font-size:0.85rem;color:var(--text3);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.06em">No significant differences found in our dataset.</p>`;return;}
+  el.innerHTML=diffs.map(d=>{
+    const la=REQ_LABELS[d.ra]?.label||d.ra;
+    const lb=REQ_LABELS[d.rb]?.label||d.rb;
+    const ca=REQ_LABELS[d.ra]?.cls||'status-nodata';
+    const cb=REQ_LABELS[d.rb]?.cls||'status-nodata';
+    return`<div class="diff-row">
+      <span class="diff-dest">${DEST_INFO[d.dest]?.flag||''} ${DEST_INFO[d.dest]?.name||d.dest}</span>
+      <div class="diff-statuses">
+        <span class="${ca} status-pill" style="font-size:0.62rem;padding:3px 8px">${la}</span>
+        <span style="color:var(--text3);font-family:var(--font-mono);font-size:0.7rem;align-self:center">vs</span>
+        <span class="${cb} status-pill" style="font-size:0.62rem;padding:3px 8px">${lb}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function runCompare(){
+  const a=document.getElementById('passport-a').value;
+  const b=document.getElementById('passport-b').value;
+  const out=document.getElementById('compare-output');
+  const prompt=document.getElementById('compare-prompt');
+  const banner=document.getElementById('winner-banner');
+  if(!a||!b){out.style.display='none';prompt.style.display='block';banner.style.display='none';return;}
+  out.style.display='block'; prompt.style.display='none';
+  const pa=PASSPORTS[a],pb=PASSPORTS[b];
+  const winnerA=pa.power>pb.power, tie=pa.power===pb.power;
+  buildCard(a,'card-a',!tie&&winnerA);
+  buildCard(b,'card-b',!tie&&!winnerA);
+  buildDiff(a,b);
+  if(tie){banner.textContent='Equal passport power — both score '+pa.power+'/193';banner.style.display='block';}
+  else{const w=winnerA?pa:pb;banner.textContent=`${w.flag} ${w.name} ranks higher — ${Math.abs(pa.power-pb.power)} point advantage`;banner.style.display='block';}
+}
+
+document.addEventListener('DOMContentLoaded',async()=>{
+  await loadVisa();
+  const p=new URLSearchParams(window.location.search);
+  if(p.get('a'))document.getElementById('passport-a').value=p.get('a');
+  if(p.get('b'))document.getElementById('passport-b').value=p.get('b');
+  if(p.get('a')&&p.get('b'))runCompare();
+});
+</script>
+</body>
+</html>

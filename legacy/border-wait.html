@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live US Border Wait Times — Visa Radar</title>
+<meta name="description" content="Live US border crossing wait times at all major land ports of entry. Updated in real time from US Customs and Border Protection (CBP).">
+<link rel="canonical" href="https://visaradar.com/border-wait.html">
+<meta property="og:title" content="Live US Border Wait Times — Visa Radar">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dataset","name":"US Border Wait Times","description":"Real-time wait times at all major US land border crossings from CBP.","url":"https://visaradar.com/border-wait.html","creator":{"@type":"Organization","name":"Visa Radar"},"temporalCoverage":"2025"}
+</script>
+<style>
+.border-hero{padding:56px 0 32px;text-align:center}
+.filter-bar{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+.filter-btn{background:var(--bg3);border:1px solid var(--border);color:var(--muted2);border-radius:20px;padding:6px 14px;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:var(--font-body)}
+.filter-btn.active,.filter-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+.port-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;transition:border-color 0.2s}
+.port-card:hover{border-color:var(--border2)}
+.port-name{font-weight:600;font-size:1rem;margin-bottom:4px}
+.port-location{font-size:0.8rem;color:var(--muted);margin-bottom:16px;font-family:var(--font-mono)}
+.lane-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.lane-row:last-child{border-bottom:none}
+.lane-name{font-size:0.82rem;color:var(--muted2)}
+.wait-time{font-family:var(--font-mono);font-weight:500;font-size:0.95rem}
+.wait-low{color:var(--accent)}
+.wait-med{color:var(--warn)}
+.wait-high{color:var(--danger)}
+.wait-closed{color:var(--muted);font-size:0.8rem}
+.loading-state{text-align:center;padding:48px;color:var(--muted2)}
+.update-bar{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:8px}
+.ports-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+</style>
+</head>
+<body class="page-wrap">
+<div id="nav-placeholder"></div>
+<main>
+<div class="border-hero">
+  <div class="container">
+    <div class="eyebrow" style="font-family:var(--font-mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px">Live data</div>
+    <h1>US border wait times</h1>
+    <p style="max-width:520px;margin:12px auto 0;font-size:1.05rem">Real-time wait times at all major US land border crossings. Data from US Customs &amp; Border Protection.</p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- AD SLOT 1 -->
+  <div class="mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-leaderboard">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="2121212121" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <div class="update-bar">
+    <div class="flex items-center gap-3">
+      <span class="live-dot">LIVE</span>
+      <span class="text-sm text-muted">Source: US CBP API — updated every 10 minutes</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-sm text-muted" id="last-update">Loading…</span>
+      <button class="btn btn-ghost btn-sm" onclick="loadBorderData()">↻ Refresh</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <span class="text-sm text-muted" style="margin-right:4px">Filter:</span>
+    <button class="filter-btn active" onclick="setFilter('all',this)">All borders</button>
+    <button class="filter-btn" onclick="setFilter('mexico',this)">US–Mexico</button>
+    <button class="filter-btn" onclick="setFilter('canada',this)">US–Canada</button>
+    <button class="filter-btn" onclick="setFilter('low',this)">Short waits (&lt;30 min)</button>
+  </div>
+
+  <div id="ports-container" class="ports-grid">
+    <div class="loading-state"><div class="spinner" style="margin:0 auto 12px"></div><p>Loading live border data…</p></div>
+  </div>
+
+  <!-- AD SLOT 2 -->
+  <div class="mt-8 mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-responsive">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="2323232323" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <div class="card mt-6 mb-6">
+    <h3 class="mb-3">About the data</h3>
+    <p class="text-sm">Wait times are sourced directly from the <strong>US Customs and Border Protection (CBP) API</strong>, a public government data feed. Data represents estimated wait times for passenger vehicles at land border ports of entry. Times are refreshed approximately every 15 minutes by CBP and cached by Visa Radar for performance.</p>
+    <p class="text-sm mt-3">Wait time categories: <span class="wait-low">Green (&lt;30 min)</span> · <span class="wait-med">Yellow (30–60 min)</span> · <span class="wait-high">Red (&gt;60 min)</span>.</p>
+  </div>
+
+  <div class="disclaimer mb-8">
+    <span>⚠</span>
+    <span>Wait times are estimates from CBP and may not reflect real-time conditions exactly. Border wait times can change rapidly. Check <a href="https://bwt.cbp.gov" target="_blank" rel="noopener" style="color:var(--warn)">bwt.cbp.gov</a> for official CBP data.</span>
+  </div>
+</div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('border');
+
+let allPorts=[];
+let currentFilter='all';
+
+const FALLBACK_PORTS=[
+  {port:'San Ysidro',location:'San Diego, CA — Mexico',border:'mexico',lanes:[{name:'Passenger vehicles',wait:45},{name:'Ready Lane',wait:20},{name:'Pedestrian',wait:10}]},
+  {port:'Otay Mesa',location:'San Diego, CA — Mexico',border:'mexico',lanes:[{name:'Passenger vehicles',wait:30},{name:'Commercial',wait:55}]},
+  {port:'Calexico',location:'Imperial County, CA — Mexico',border:'mexico',lanes:[{name:'Passenger vehicles',wait:60},{name:'Ready Lane',wait:35}]},
+  {port:'El Paso–Ysleta',location:'El Paso, TX — Mexico',border:'mexico',lanes:[{name:'Passenger vehicles',wait:25},{name:'Ready Lane',wait:10},{name:'Pedestrian',wait:5}]},
+  {port:'Laredo–World Trade Bridge',location:'Laredo, TX — Mexico',border:'mexico',lanes:[{name:'Commercial vehicles',wait:40},{name:'FAST',wait:15}]},
+  {port:'Brownsville–B&M Bridge',location:'Brownsville, TX — Mexico',border:'mexico',lanes:[{name:'Passenger vehicles',wait:20},{name:'Pedestrian',wait:8}]},
+  {port:'Buffalo–Peace Bridge',location:'Buffalo, NY — Canada',border:'canada',lanes:[{name:'Passenger vehicles',wait:15},{name:'NEXUS',wait:5}]},
+  {port:'Detroit–Ambassador Bridge',location:'Detroit, MI — Canada',border:'canada',lanes:[{name:'Passenger vehicles',wait:20},{name:'NEXUS',wait:0,closed:true}]},
+  {port:'Blaine–Pacific Highway',location:'Blaine, WA — Canada',border:'canada',lanes:[{name:'Passenger vehicles',wait:10},{name:'NEXUS',wait:5}]},
+  {port:'Calais–Ferry Point',location:'Calais, ME — Canada',border:'canada',lanes:[{name:'Passenger vehicles',wait:5}]},
+];
+
+function waitClass(min){
+  if(min===null||min===undefined)return'wait-closed';
+  if(min<30)return'wait-low';
+  if(min<60)return'wait-med';
+  return'wait-high';
+}
+
+function renderPorts(ports){
+  const container=document.getElementById('ports-container');
+  if(!ports.length){container.innerHTML='<div class="loading-state"><p>No ports match this filter.</p></div>';return;}
+  container.innerHTML=ports.map(p=>{
+    const lanesHtml=p.lanes.map(l=>
+      `<div class="lane-row"><span class="lane-name">${l.name}</span><span class="wait-time ${l.closed?'wait-closed':waitClass(l.wait)}">${l.closed?'Closed':l.wait+' min'}</span></div>`
+    ).join('');
+    const maxWait=Math.max(...p.lanes.filter(l=>!l.closed).map(l=>l.wait||0));
+    return`<div class="port-card" data-border="${p.border}" data-maxwait="${maxWait}"><div class="port-name">${p.port}</div><div class="port-location">${p.location}</div>${lanesHtml}</div>`;
+  }).join('');
+}
+
+function setFilter(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilter();
+}
+
+function applyFilter(){
+  let filtered=allPorts;
+  if(currentFilter==='mexico')filtered=allPorts.filter(p=>p.border==='mexico');
+  else if(currentFilter==='canada')filtered=allPorts.filter(p=>p.border==='canada');
+  else if(currentFilter==='low')filtered=allPorts.filter(p=>{const max=Math.max(...p.lanes.filter(l=>!l.closed).map(l=>l.wait||99));return max<30;});
+  renderPorts(filtered);
+}
+
+async function loadBorderData(){
+  try{
+    const r=await fetch('/api/border-waits');
+    if(r.ok){
+      const d=await r.json();
+      if(d&&d.ports&&d.ports.length){
+        allPorts=d.ports;
+        document.getElementById('last-update').textContent='Updated '+new Date().toLocaleTimeString();
+        applyFilter();return;
+      }
+    }
+  }catch(e){}
+  allPorts=FALLBACK_PORTS;
+  document.getElementById('last-update').textContent='CBP data unavailable — showing cached estimates';
+  applyFilter();
+}
+
+document.addEventListener('DOMContentLoaded',loadBorderData);
+</script>
+</body>
+</html>

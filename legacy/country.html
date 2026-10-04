@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Country Visa Guide — Visa Radar</title>
+<meta name="description" id="page-desc" content="Detailed visa requirements, entry rules, border wait times and travel advisories.">
+<link rel="canonical" id="page-canonical" href="https://visaradar.com/country.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json" id="page-schema">{}</script>
+<style>
+.country-hero{padding:48px 0 32px;border-bottom:1px solid var(--border);margin-bottom:40px}
+.country-flag{font-size:4rem;margin-bottom:16px;display:block}
+.entry-grid{display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start}
+.sidebar{display:flex;flex-direction:column;gap:20px}
+.req-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.req-row:last-child{border-bottom:none}
+.req-label{font-size:0.85rem;color:var(--muted2)}
+.req-value{font-weight:500;font-size:0.9rem;color:var(--text)}
+.tab-bar{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.tab-btn{padding:10px 16px;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted2);font-family:var(--font-body);font-size:0.88rem;font-weight:500;cursor:pointer;transition:all 0.2s;margin-bottom:-1px}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn:hover{color:var(--text)}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.change-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.change-item:last-child{border-bottom:none}
+.change-date{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);min-width:80px;padding-top:2px}
+.change-body h4{font-size:0.9rem;font-weight:500;margin-bottom:4px}
+.change-body p{font-size:0.83rem;margin:0}
+.passport-from{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+@media(max-width:768px){.entry-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="page-wrap">
+<div id="nav-placeholder"></div>
+<main>
+
+<div class="container">
+  <div id="breadcrumb" class="text-sm text-muted mt-4 mb-2">
+    <a href="/index.html">Home</a> › <span id="bc-country">Country</span>
+  </div>
+
+  <div class="country-hero">
+    <span class="country-flag" id="country-flag">🏳️</span>
+    <div class="flex items-center gap-3 mb-3 flex-wrap">
+      <h1 id="country-name">Loading…</h1>
+      <span id="country-badge" class="badge badge-blue">Loading</span>
+    </div>
+    <p id="country-intro" class="text-muted2" style="max-width:680px;font-size:1rem;color:var(--muted2)">Loading visa information…</p>
+  </div>
+
+  <!-- AD SLOT 1 — leaderboard -->
+  <div class="mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-leaderboard">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="4444444444" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <div class="entry-grid">
+    <div>
+      <!-- PASSPORT SELECTOR -->
+      <div class="card mb-6">
+        <h3 class="mb-3">Check visa requirement for your passport</h3>
+        <div class="flex gap-3 flex-wrap">
+          <div style="flex:1;min-width:200px">
+            <label class="form-label">Your passport</label>
+            <select class="input" id="from-passport" onchange="updateRequirement()">
+              <option value="">Select passport…</option>
+              <option value="AE">🇦🇪 UAE</option>
+              <option value="US">🇺🇸 United States</option>
+              <option value="GB">🇬🇧 United Kingdom</option>
+              <option value="DE">🇩🇪 Germany</option>
+              <option value="IN">🇮🇳 India</option>
+              <option value="CN">🇨🇳 China</option>
+              <option value="PH">🇵🇭 Philippines</option>
+              <option value="JP">🇯🇵 Japan</option>
+            </select>
+          </div>
+          <div style="display:flex;align-items:flex-end">
+            <div id="req-result" class="status-pill status-nodata" style="height:42px;padding:0 16px;font-size:0.85rem">Select passport above</div>
+          </div>
+        </div>
+        <div id="req-notes" class="mt-3" style="display:none">
+          <p id="req-notes-text" class="text-sm"></p>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('entry',this)">Entry Requirements</button>
+        <button class="tab-btn" onclick="switchTab('health',this)">Health & Documents</button>
+        <button class="tab-btn" onclick="switchTab('changes',this)">Policy Changes</button>
+        <button class="tab-btn" onclick="switchTab('advisory',this)">Advisory</button>
+      </div>
+
+      <div id="tab-entry" class="tab-pane active">
+        <h3 class="mb-4">Entry requirements</h3>
+        <div id="entry-content">
+          <div class="req-row"><span class="req-label">Passport validity required</span><span class="req-value" id="er-passport">6 months beyond stay</span></div>
+          <div class="req-row"><span class="req-label">Return ticket required</span><span class="req-value" id="er-return">Yes</span></div>
+          <div class="req-row"><span class="req-label">Proof of funds required</span><span class="req-value" id="er-funds">Yes</span></div>
+          <div class="req-row"><span class="req-label">Maximum stay (tourist)</span><span class="req-value" id="er-stay">Varies by visa type</span></div>
+          <div class="req-row"><span class="req-label">Entry ports available</span><span class="req-value" id="er-ports">Air, Land, Sea</span></div>
+          <div class="req-row"><span class="req-label">Data last verified</span><span class="req-value" id="er-updated">2025</span></div>
+        </div>
+      </div>
+
+      <div id="tab-health" class="tab-pane">
+        <h3 class="mb-4">Health &amp; documentation</h3>
+        <div class="req-row"><span class="req-label">COVID restrictions</span><span class="req-value">None currently</span></div>
+        <div class="req-row"><span class="req-label">Vaccination requirements</span><span class="req-value" id="ht-vaccine">None for most nationalities</span></div>
+        <div class="req-row"><span class="req-label">Health insurance</span><span class="req-value" id="ht-insurance">Recommended</span></div>
+        <div class="req-row"><span class="req-label">Travel advisory level</span><span class="req-value" id="ht-advisory">Check below</span></div>
+        <p class="text-sm text-muted mt-4">Health requirements change frequently. Always check the latest guidance from your home country's foreign ministry and the WHO before travel.</p>
+      </div>
+
+      <div id="tab-changes" class="tab-pane">
+        <h3 class="mb-4">Recent policy changes</h3>
+        <div id="changes-list">
+          <div class="change-item">
+            <div class="change-date">Jan 2025</div>
+            <div class="change-body">
+              <h4>Visa processing fee update</h4>
+              <p>Standard tourist visa processing fees updated. Check official embassy website for current rates.</p>
+            </div>
+          </div>
+          <div class="change-item">
+            <div class="change-date">Dec 2024</div>
+            <div class="change-body">
+              <h4>Extended e-Visa availability</h4>
+              <p>Online visa application system expanded to cover additional nationalities.</p>
+            </div>
+          </div>
+          <div class="change-item">
+            <div class="change-date">Oct 2024</div>
+            <div class="change-body">
+              <h4>Entry requirement documentation update</h4>
+              <p>Updated list of accepted financial proof documents for visa applications.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4">
+          <a href="/alerts.html" class="btn btn-secondary btn-sm">Get alerts for this country →</a>
+        </div>
+      </div>
+
+      <div id="tab-advisory" class="tab-pane">
+        <h3 class="mb-4">Travel advisory</h3>
+        <div id="advisory-content">
+          <div class="card" style="border-color:rgba(0,212,168,0.3)">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="badge badge-green">Level 1</span>
+              <strong>Exercise Normal Precautions</strong>
+            </div>
+            <p class="text-sm">No special advisory in effect. Standard travel precautions apply. Monitor local news and follow guidance from your home country's foreign ministry.</p>
+          </div>
+          <p class="text-sm text-muted mt-4">Advisory levels sourced from US State Department and UK FCDO. Check both sources for the most complete picture.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="card">
+        <h3 class="mb-3" style="font-size:1rem">Quick links</h3>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="#" id="embassy-link" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">Official embassy website ↗</a>
+          <a href="/alerts.html" class="btn btn-ghost btn-sm">Set up visa alerts</a>
+          <a href="/compare.html" class="btn btn-ghost btn-sm">Compare passports</a>
+          <a href="/calculator.html" class="btn btn-ghost btn-sm">Visa calculator</a>
+        </div>
+      </div>
+
+      <!-- AD SLOT 2 — sidebar rectangle -->
+      <div>
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-slot ad-slot-rectangle">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="5555555555" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="mb-3" style="font-size:1rem">Country facts</h3>
+        <div class="req-row" style="padding:8px 0"><span class="req-label">Region</span><span class="req-value" id="cf-region">–</span></div>
+        <div class="req-row" style="padding:8px 0"><span class="req-label">Currency</span><span class="req-value" id="cf-currency">–</span></div>
+        <div class="req-row" style="padding:8px 0"><span class="req-label">Capital</span><span class="req-value" id="cf-capital">–</span></div>
+        <div class="req-row" style="padding:8px 0;border-bottom:none"><span class="req-label">Language</span><span class="req-value" id="cf-language">–</span></div>
+      </div>
+
+      <div class="disclaimer">
+        <span>Always verify requirements with the official embassy before booking travel.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD SLOT 3 — above footer -->
+  <div class="mt-8 mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-leaderboard">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="6666666666" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+</div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('');
+
+const COUNTRY_DATA = {
+  US:{name:'United States',flag:'🇺🇸',intro:'The United States requires advance visas or ESTA authorization for most visitors. Entry requirements depend heavily on your nationality and purpose of visit. US CBP processes over one million travelers daily.',region:'North America',currency:'USD',capital:'Washington D.C.',language:'English',passport:'6 months beyond stay',returnTicket:'Not strictly required',funds:'Recommended',stay:'90 days (VWP) or as per visa',ports:'Air, Land, Sea',embassyUrl:'https://travel.state.gov',badge:'ESTA / B1-B2'},
+  GB:{name:'United Kingdom',flag:'🇬🇧',intro:'The United Kingdom operates an Electronic Travel Authorisation (ETA) system for many nationalities. Post-Brexit, EU citizens now require either an ETA or standard visitor visa to enter.',region:'Europe',currency:'GBP',capital:'London',language:'English',passport:'Valid for duration of stay',returnTicket:'Yes',funds:'Yes — must demonstrate ability to support yourself',stay:'6 months (Standard Visitor)',ports:'Air, Sea, Eurostar',embassyUrl:'https://www.gov.uk/visit-uk',badge:'ETA / Visitor Visa'},
+  AE:{name:'United Arab Emirates',flag:'🇦🇪',intro:'The UAE offers visa-free or visa-on-arrival entry to citizens of over 100 countries. Visitors from many Western nations receive a free 30-day visa on arrival, extendable to 90 days.',region:'Middle East',currency:'AED',capital:'Abu Dhabi',language:'Arabic (English widely spoken)',passport:'6 months beyond stay',returnTicket:'Yes',funds:'Yes',stay:'30–90 days depending on nationality',ports:'Air, Land, Sea',embassyUrl:'https://u.ae/en/information-and-services/visa-and-emirates-id',badge:'Visa on Arrival'},
+  DE:{name:'Germany',flag:'🇩🇪',intro:'Germany is part of the Schengen Area, granting access to 26 European countries with a single visa. Citizens of many countries can visit Germany visa-free for up to 90 days in any 180-day period.',region:'Europe',currency:'EUR',capital:'Berlin',language:'German',passport:'3 months beyond stay',returnTicket:'Yes',funds:'Approx €100/day',stay:'90 days in 180 (Schengen)',ports:'Air, Land, Sea',embassyUrl:'https://www.auswaertiges-amt.de',badge:'Schengen Visa'},
+  JP:{name:'Japan',flag:'🇯🇵',intro:'Japan maintains strict but straightforward visa rules. Citizens of approximately 68 countries enjoy visa-free entry. Japan is known for its efficient immigration process and clear documentation requirements.',region:'Asia-Pacific',currency:'JPY',capital:'Tokyo',language:'Japanese',passport:'6 months beyond stay',returnTicket:'Yes',funds:'Recommended',stay:'90 days (visa-free) or as per visa',ports:'Air, Sea',embassyUrl:'https://www.mofa.go.jp',badge:'Visa-free / Tourist Visa'},
+  SG:{name:'Singapore',flag:'🇸🇬',intro:'Singapore is one of the most accessible destinations in Asia, with visa-free access for citizens of over 160 countries. The city-state has a highly efficient immigration system.',region:'Southeast Asia',currency:'SGD',capital:'Singapore',language:'English, Malay, Mandarin, Tamil',passport:'6 months beyond stay',returnTicket:'Yes',funds:'SGD 1,000+',stay:'30–90 days depending on nationality',ports:'Air, Sea',embassyUrl:'https://www.ica.gov.sg',badge:'Visa-free'},
+  FR:{name:'France',flag:'🇫🇷',intro:'France is part of the Schengen Area. As one of the most visited countries in the world, France receives over 90 million tourists annually. The visa application process is handled by VFS Global for many nationalities.',region:'Europe',currency:'EUR',capital:'Paris',language:'French',passport:'3 months beyond stay',returnTicket:'Yes',funds:'€65/day recommended',stay:'90 days in 180 (Schengen)',ports:'Air, Land, Sea',embassyUrl:'https://france-visas.gouv.fr',badge:'Schengen Visa'},
+  IN:{name:'India',flag:'🇮🇳',intro:'India offers an e-Visa system for citizens of over 160 countries, covering tourism, business, and medical visits. The e-Visa is processed online and typically takes 3–5 business days.',region:'South Asia',currency:'INR',capital:'New Delhi',language:'Hindi, English (22 official languages)',passport:'6 months beyond stay',returnTicket:'Yes',funds:'Varies',stay:'30–180 days depending on visa type',ports:'Selected air and sea ports (check list)',embassyUrl:'https://indianvisaonline.gov.in',badge:'e-Visa Available'},
+  AU:{name:'Australia',flag:'🇦🇺',intro:'Australia requires an Electronic Travel Authority (ETA) or visitor visa for most international visitors. Citizens of some countries can use the ETA, while others must apply for a standard visitor visa.',region:'Oceania',currency:'AUD',capital:'Canberra',language:'English',passport:'6 months beyond stay',returnTicket:'Yes',funds:'Demonstrated access to funds',stay:'3 months (ETA) or as per visa',ports:'Air, Sea',embassyUrl:'https://immi.homeaffairs.gov.au',badge:'ETA / Visitor Visa'},
+  CA:{name:'Canada',flag:'🇨🇦',intro:'Canada requires an Electronic Travel Authorization (eTA) for visa-exempt foreign nationals flying into Canada. US citizens are exempt. The eTA costs CAD $7 and is valid for 5 years.',region:'North America',currency:'CAD',capital:'Ottawa',language:'English, French',passport:'Valid for duration of stay',returnTicket:'Not strictly required',funds:'Proof of sufficient funds',stay:'6 months (maximum)',ports:'Air, Land, Sea',embassyUrl:'https://www.canada.ca/immigration',badge:'eTA / Visitor Visa'},
+  TR:{name:'Turkey',flag:'🇹🇷',intro:'Turkey offers an e-Visa system for citizens of over 100 countries. The Turkish e-Visa is quick to obtain online, usually processed within minutes to 24 hours.',region:'Europe/Middle East',currency:'TRY',capital:'Ankara',language:'Turkish',passport:'6 months beyond stay',returnTicket:'Yes',funds:'$50/day minimum recommended',stay:'30–90 days depending on nationality',ports:'Air, Land, Sea',embassyUrl:'https://www.evisa.gov.tr',badge:'e-Visa Available'},
+  TH:{name:'Thailand',flag:'🇹🇭',intro:'Thailand introduced a Destination Thailand Visa (DTV) for long-stay visitors. Citizens of many countries enjoy visa exemption for up to 30 days, with the option to extend.',region:'Southeast Asia',currency:'THB',capital:'Bangkok',language:'Thai',passport:'6 months beyond stay',returnTicket:'Yes',funds:'THB 20,000 per person',stay:'30 days (exemption) or as per visa',ports:'Air, Land, Sea',embassyUrl:'https://www.thaiembassy.com',badge:'Visa-exempt / DTV'}
+};
+
+const VISA_RULES_URL = '/data/visa-rules.json';
+let visaData = [];
+
+async function loadVisaData(){
+  try{const r=await fetch(VISA_RULES_URL);visaData=await r.json();}catch(e){visaData=[];}
+}
+
+function getCountryCode(){
+  return new URLSearchParams(window.location.search).get('c')||'AE';
+}
+
+function populatePage(code){
+  const d=COUNTRY_DATA[code];
+  if(!d){document.getElementById('country-name').textContent='Country not found';return;}
+  document.title=`${d.name} Visa Requirements & Entry Guide — Visa Radar`;
+  document.getElementById('page-desc').content=`Complete ${d.name} visa requirements, entry rules, travel advisories and policy changes. Updated for 2025.`;
+  document.getElementById('page-canonical').href=`https://visaradar.com/country.html?c=${code}`;
+  document.getElementById('page-schema').textContent=JSON.stringify({"@context":"https://schema.org","@type":"Dataset","name":`${d.name} Visa Requirements`,"description":`Official visa and entry requirements for ${d.name}`,"url":`https://visaradar.com/country.html?c=${code}`,"creator":{"@type":"Organization","name":"Visa Radar"}});
+  document.getElementById('bc-country').textContent=d.name;
+  document.getElementById('country-flag').textContent=d.flag;
+  document.getElementById('country-name').textContent=d.name;
+  document.getElementById('country-badge').textContent=d.badge;
+  document.getElementById('country-intro').textContent=d.intro;
+  document.getElementById('er-passport').textContent=d.passport;
+  document.getElementById('er-return').textContent=d.returnTicket;
+  document.getElementById('er-funds').textContent=d.funds;
+  document.getElementById('er-stay').textContent=d.stay;
+  document.getElementById('er-ports').textContent=d.ports;
+  document.getElementById('er-updated').textContent='January 2025';
+  document.getElementById('cf-region').textContent=d.region;
+  document.getElementById('cf-currency').textContent=d.currency;
+  document.getElementById('cf-capital').textContent=d.capital;
+  document.getElementById('cf-language').textContent=d.language;
+  document.getElementById('embassy-link').href=d.embassyUrl;
+}
+
+function updateRequirement(){
+  const from=document.getElementById('from-passport').value;
+  const to=getCountryCode();
+  if(!from){document.getElementById('req-result').textContent='Select passport above';return;}
+  const rule=visaData.find(r=>r.from===from&&r.to===to);
+  const el=document.getElementById('req-result');
+  const notesEl=document.getElementById('req-notes');
+  const notesText=document.getElementById('req-notes-text');
+  el.className='badge';
+  if(!rule){el.classList.add('badge-gray'); el.style.cssText='display:inline-flex;align-items:center;padding:8px 16px;font-size:0.85rem';el.textContent='No data — check embassy';notesEl.style.display='none';return;}
+  const map={visa_free:['status-free','✓ Visa-free'],visa_on_arrival:['status-arrival','Visa on arrival'],esta:['status-eta','eTA / ESTA required'],visa_required:['status-required','Visa required']};
+  const [cls,label]=map[rule.requirement]||['badge-gray','Unknown'];
+  el.classList.add(cls);
+  el.textContent=label+(rule.max_stay?` · ${rule.max_stay} days`:'');
+  if(rule.notes){notesEl.style.display='block';notesText.textContent=rule.notes;}else{notesEl.style.display='none';}
+}
+
+function switchTab(name,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',async()=>{
+  renderShared('');
+  await loadVisaData();
+  const code=getCountryCode();
+  populatePage(code);
+});
+</script>
+</body>
+</html>
