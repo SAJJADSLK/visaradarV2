@@ -19,3 +19,12 @@ Edit design in `src/style.css`, behaviour in `src/app.js`, pages in `build.py`.
 
 ## Not included yet
 About, Privacy and Contact pages, the calculator and compare tools, and email alerts. Add privacy and contact pages before applying for ads.
+
+## Settings (environment variables for `build.py`)
+- `SITE_URL`: your live domain (used in canonicals and the sitemap).
+- `CONTACT_EMAIL`: shown on the legal pages. Default is a placeholder; set your real address.
+- `ADSENSE_ID`: e.g. `ca-pub-1234567890123456`. When set, the AdSense script and `ads.txt` are added. Leave empty until Google approves the site; the privacy page switches wording automatically.
+Example: `SITE_URL=https://yourdomain.com CONTACT_EMAIL=you@yourdomain.com python3 build.py`
+
+## Cache note
+CSS and JS URLs carry a content hash (`style.css?v=...`), so visitors always get the newest design after a deploy.

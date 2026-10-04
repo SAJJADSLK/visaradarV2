@@ -32,3 +32,4 @@ if(live){const cc=live.dataset.cc,out=$("#facts"),rows=[];const add=(a,b)=>rows.
   if(cur)jobs.push(cache("https://open.er-api.com/v6/latest/USD",216e5).then(x=>{const r=x.rates[cur[0]];if(r)add("Currency",`${esc(cur[1].name)} (${cur[0]}). 1 USD = ${r.toLocaleString(undefined,{maximumFractionDigits:r>100?0:2})} ${cur[0]}${x.rates.EUR?`, 1 EUR = ${(r/x.rates.EUR).toLocaleString(undefined,{maximumFractionDigits:r>100?0:2})} ${cur[0]}`:""}`)}).catch(()=>{}));
   await Promise.all(jobs);show()}).catch(show)}
 })();
+document.getElementById("theme")?.addEventListener("click",()=>{const d=document.documentElement,n=d.dataset.theme==="dark"?"light":"dark";d.dataset.theme=n;try{localStorage.setItem("vr:theme",n)}catch(_){}});
