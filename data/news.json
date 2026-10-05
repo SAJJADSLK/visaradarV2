@@ -1,5 +1,33 @@
 [
  {
+  "t": "Guidance: Introduction to the sponsorship management system: SMS manual 1",
+  "u": "https://www.gov.uk/government/publications/use-the-sponsorship-management-system-sms-user-manual",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-05",
+  "x": "Introduction to using SMS for licensed sponsors."
+ },
+ {
+  "t": "Guidance: Register of licensed sponsors: students",
+  "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-05",
+  "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
+ },
+ {
+  "t": "Guidance: Register of licensed sponsors: workers",
+  "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-05",
+  "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
+ },
+ {
+  "t": "Prove your English language abilities with a secure English language test (SELT)",
+  "u": "https://www.gov.uk/guidance/prove-your-english-language-abilities-with-a-secure-english-language-test-selt",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-05",
+  "x": "For visa or citizenship applications, you may need to prove your knowledge of English by passing a secure English language test (SELT)."
+ },
+ {
   "t": "Haiti makes the iKat digital arrival and departure form mandatory",
   "u": "https://visasnews.com/",
   "s": "VisasNews",
@@ -28,6 +56,27 @@
   "x": "VisasNews reports the certificate is no longer required for entry. Confirm Uganda's current health rules before you travel."
  },
  {
+  "t": "Guidance: Licensing authority guide to right to work checks",
+  "u": "https://www.gov.uk/government/publications/licensing-authority-guide-to-right-to-work-checks",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-02",
+  "x": "Guidance for licensing authorities on how to check the immigration status of people who apply for a taxi or private hire licence."
+ },
+ {
+  "t": "Guidance: Multi-factor authentication for UK visa sponsors: SMS manual 13",
+  "u": "https://www.gov.uk/government/publications/multi-factor-authentication-for-uk-visa-sponsors-sms-manual-13",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-02",
+  "x": "Step-by-step guide to using multi-factor authentication (MFA) when logging into the sponsorship management system (SMS)."
+ },
+ {
+  "t": "Guidance: Palestine: country policy and information notes",
+  "u": "https://www.gov.uk/government/publications/palestine-country-policy-and-information-notes",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-02",
+  "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
+ },
+ {
   "t": "Turkmenistan launches its e-Visa system on 1 October 2026",
   "u": "https://visasnews.com/en/turkmenistan-launches-e-visa-system-on-october-1-2026/",
   "s": "VisasNews",
@@ -35,10 +84,101 @@
   "x": "Eligible nationalities, fees and processing times still need to be clarified, so check the official portal before applying."
  },
  {
+  "t": "Guidance: Right to work checklist",
+  "u": "https://www.gov.uk/government/publications/right-to-work-checklist",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-01",
+  "x": "A list for employers to check if their staff have the right to work in the UK."
+ },
+ {
+  "t": "UK/European Applicant Transfer Scheme",
+  "u": "https://www.gov.uk/guidance/ukeuropean-applicant-transfer-scheme",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-01",
+  "x": "Guidance for submitting an expression of interest application to come to the UK under the UK/European Applicant Transfer Scheme."
+ },
+ {
+  "t": "Guidance: Right to work checks: an employer's guide",
+  "u": "https://www.gov.uk/government/publications/right-to-work-checks-employers-guide",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-01",
+  "x": "How to carry out right to work checks, why you need to do them, and which documents you can use."
+ },
+ {
+  "t": "Guidance: Avoiding discrimination while preventing illegal working: code of practice, 2026",
+  "u": "https://www.gov.uk/government/publications/right-to-work-checks-code-of-practice-on-avoiding-discrimination",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-01",
+  "x": "Guidance for employers on how to avoid discrimination when carrying out right to work checks."
+ },
+ {
+  "t": "Guidance: Right to rent immigration checks: landlords' code of practice",
+  "u": "https://www.gov.uk/government/publications/right-to-rent-landlords-code-of-practice",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-01",
+  "x": "Guidance for landlords, homeowners and letting agents affected by the introduction of right to rent immigration checks."
+ },
+ {
+  "t": "Guidance: Landlord's guide to right to rent checks",
+  "u": "https://www.gov.uk/government/publications/landlords-guide-to-right-to-rent-checks",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-01",
+  "x": "This guidance advises a landlord, letting agent or homeowner how to conduct a right to rent check when letting privately rented accommoda..."
+ },
+ {
   "t": "UK immigration rule changes take effect on 8 October 2026",
   "u": "https://www.lewissilkin.com/insights/2026/09/30/summary-of-autumn-2026-immigration-rule-changes-102o3xt",
   "s": "Lewis Silkin",
   "d": "2026-09-30",
   "x": "The changes touch the visitor route as well as Skilled Worker, EU Settlement Scheme and Hong Kong BN(O) routes."
+ },
+ {
+  "t": "Transparency data: Online immigration status (eVisa): UKVI account creation data",
+  "u": "https://www.gov.uk/government/publications/online-immigration-status-evisa-ukvi-account-creation-data",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-09-30",
+  "x": "Operational statistics on how many people have created an account to access an eVisa."
+ },
+ {
+  "t": "Guidance: Buckinghamshire New University: Student sponsor licence suspension",
+  "u": "https://www.gov.uk/government/publications/buckinghamshire-new-university-student-sponsor-licence-suspension",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-09-30",
+  "x": "On 30 September 2026, the Home Office suspended Buckinghamshire New University's Student sponsor licence."
+ },
+ {
+  "t": "Transparency data: Country returns guide",
+  "u": "https://www.gov.uk/government/publications/country-returns-guide",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-09-29",
+  "x": "Guidance on returning immigration offenders to their country of origin."
+ },
+ {
+  "t": "Guidance: Study post licence priority service",
+  "u": "https://www.gov.uk/government/publications/study-post-licence-priority-service",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-09-29",
+  "x": "Guidance on the priority change of circumstances service for Study sponsors."
+ },
+ {
+  "t": "Guidance: Single protection interview: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/single-protection-interview-caseworker-guidance",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-09-28",
+  "x": "Immigration staff guidance on single protection interviews."
+ },
+ {
+  "t": "Guidance: Information booklet for asylum applications",
+  "u": "https://www.gov.uk/government/publications/information-booklet-for-asylum-applications",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-09-28",
+  "x": "Information booklet for those who have registered, or are considering registering, an asylum application in the UK."
+ },
+ {
+  "t": "Guidance: Pakistan: country policy and information notes",
+  "u": "https://www.gov.uk/government/publications/pakistan-country-policy-and-information-notes",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-09-25",
+  "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
  }
 ]
