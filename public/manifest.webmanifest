@@ -1,0 +1,1 @@
+{"name": "Visa Radar", "short_name": "Visa Radar", "start_url": "/", "display": "standalone", "background_color": "#fbf8f1", "theme_color": "#0f3d2e", "icons": [{"src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]}
