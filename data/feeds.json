@@ -1,0 +1,17 @@
+[
+ {
+  "name": "UK Visas and Immigration (GOV.UK)",
+  "url": "https://www.gov.uk/government/organisations/uk-visas-and-immigration.atom",
+  "filter": false
+ },
+ {
+  "name": "U.S. Travel Advisories",
+  "url": "https://travel.state.gov/_res/rss/TAsTWs.xml",
+  "filter": false
+ },
+ {
+  "name": "Schengen Visa Info",
+  "url": "https://www.schengenvisainfo.com/news/feed/",
+  "filter": true
+ }
+]

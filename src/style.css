@@ -47,3 +47,38 @@ footer{background:var(--em);color:#d3dfd7;padding:44px 5vw;font-size:.9rem}foote
 .result{margin-top:24px;padding:20px;border:1px solid var(--gold);background:var(--card);border-radius:6px}.result b{font:600 2.2rem "Cormorant Garamond",serif;color:var(--brass)}
 @media(max-width:560px){.trip{grid-template-columns:1fr 1fr}.trip .x{grid-column:1/-1;width:100%}}
 .mid{color:var(--mid);font-weight:600}.stop{display:grid;grid-template-columns:1fr auto;gap:10px;margin:8px 0;max-width:520px}.stop select{margin:0}
+.lnk{background:none;border:0;color:#e6cd8f;font:inherit;cursor:pointer;text-decoration:underline;padding:0}.lnk[hidden]{display:none}
+button.chip{cursor:pointer;font:inherit;font-size:.95rem}button.chip[aria-pressed=true]{border-color:var(--gold);color:var(--brass);font-weight:600}
+.nws{padding:18px 0;border-bottom:1px solid var(--rule)}.nws h3{font:600 1.35rem "Cormorant Garamond",serif;margin:0 0 4px}.nws h3 a{color:var(--ink);text-decoration:none}.nws h3 a:hover{color:var(--brass)}.nws p{margin:.2em 0}.nws[hidden]{display:none}
+.adl{font-size:.75rem;color:var(--mute);margin:24px 0 4px}
+/* ===== LUXURY LAYER ===== */
+::selection{background:var(--gold);color:#06150f}
+header{position:sticky;top:0;z-index:30;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);background:color-mix(in srgb,var(--paper) 84%,transparent)}
+h2::before{content:"";display:block;width:48px;height:2px;margin-bottom:12px;background:linear-gradient(90deg,var(--gold),transparent)}
+main>h1:first-child::after,.prose>h1:first-child::after{content:"";display:block;width:84px;height:3px;margin-top:14px;background:linear-gradient(90deg,var(--gold),transparent)}
+.hero{isolation:isolate;margin:-48px calc(50% - 50vw) 0;padding:clamp(56px,9vw,120px) calc(50vw - 50%) clamp(64px,9vw,110px);color:#f3ecd9;overflow:hidden;gap:clamp(28px,5vw,64px);background:radial-gradient(1100px 560px at 85% -10%,#14604a 0%,transparent 62%),radial-gradient(900px 520px at 0% 110%,#0b2f25 0%,transparent 60%),#06150f}
+.hero::before{content:"";position:absolute;inset:-20%;z-index:-1;filter:blur(34px);background:radial-gradient(40% 40% at 25% 30%,rgba(195,161,91,.30),transparent 70%),radial-gradient(35% 35% at 78% 62%,rgba(40,170,130,.28),transparent 70%),radial-gradient(30% 30% at 55% 12%,rgba(130,100,210,.14),transparent 70%);animation:aurora 18s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.16;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+@keyframes aurora{to{transform:translate3d(4%,3%,0) rotate(6deg) scale(1.1)}}
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.glow{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(520px circle at var(--hx,70%) var(--hy,30%),rgba(233,207,143,.20),transparent 62%)}
+.hero .radar{right:-60px;top:50%;transform:translateY(-50%);width:620px;opacity:.32;color:#e9cf8f}
+.hero h1{background:linear-gradient(100deg,#fff3cf 0%,#d9bb70 35%,#fff7dc 50%,#c3a15b 70%,#e9d49a 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:-220% 0}}
+.hero .lede{color:#d4ddd7}.stats{display:flex;flex-wrap:wrap;gap:20px clamp(24px,5vw,60px);margin-top:30px}.stats b{display:block;font:600 clamp(2.1rem,5vw,3.3rem)/1 "Cormorant Garamond",serif;color:#e9cf8f}.stats span{font-size:.85rem;color:#a9bbb1}
+.hero .ticket{background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:#f3ecd9;border:1px solid rgba(233,207,143,.45);outline:1px solid rgba(233,207,143,.16);box-shadow:0 40px 80px -30px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.14);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease-out}
+.hero .ticket select{background:rgba(6,21,15,.75);color:#f3ecd9;border-color:rgba(233,207,143,.35)}.hero .ticket .fine,.hero .ticket a{color:#dcc88f}.hero .ticket .stamp{background:rgba(6,21,15,.7)}
+.hero .ticket .k-vf,.hero .ticket .k-voa{color:#7ee0a0}.hero .ticket .k-eta,.hero .ticket .k-ev{color:#f0cd78}.hero .ticket .k-vr,.hero .ticket .k-na{color:#ff9d8f}
+.stamp{position:relative;overflow:hidden}.stamp::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-130%);animation:sheen 4.5s ease-in-out infinite}
+@keyframes sheen{60%,100%{transform:translateX(130%)}}
+.tape{margin:0 calc(50% - 50vw);overflow:hidden;white-space:nowrap;background:#0a2a20;border-block:1px solid rgba(233,207,143,.4);padding:13px 0;color:#e9cf8f;font:500 1.05rem "Cormorant Garamond",serif;letter-spacing:.04em}
+.tape>div{display:inline-flex;gap:56px;padding-right:56px;animation:tape 70s linear infinite}.tape:hover>div{animation-play-state:paused}.tape b{color:#fff3cf;margin-left:8px}
+@keyframes tape{to{transform:translateX(-50%)}}
+.row,.chip{background-image:radial-gradient(220px circle at var(--mx,-999px) var(--my,-999px),rgba(195,161,91,.24),transparent 70%)}
+a.row:hover,.chip:hover{background-color:var(--card);background-image:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(195,161,91,.28),transparent 70%)}
+.chip{background-color:var(--card);transition:transform .25s,border-color .25s,box-shadow .25s}.chip:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(143,106,31,.6)}
+.btn{background:linear-gradient(135deg,transparent,transparent)}.btn:hover{background:linear-gradient(135deg,#c3a15b,#e9cf8f);color:#06150f}
+footer{border-top:1px solid var(--gold);box-shadow:0 -24px 60px -34px rgba(195,161,91,.5)}
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}.js .rv.in{opacity:1;transform:none}
+@media(max-width:880px){.hero .radar{width:420px;right:-170px;opacity:.2}.hero .ticket{transform:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}.hero .ticket{transform:none}}

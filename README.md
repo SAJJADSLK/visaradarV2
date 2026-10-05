@@ -28,3 +28,14 @@ Example: `SITE_URL=https://yourdomain.com CONTACT_EMAIL=you@yourdomain.com pytho
 
 ## Cache note
 CSS and JS URLs carry a content hash (`style.css?v=...`), so visitors always get the newest design after a deploy.
+
+## AdSense (auto ads)
+1. Apply at adsense.google.com with your live domain and add the site.
+2. Build with `ADSENSE_ID=ca-pub-XXXXXXXXXXXXXXXX` (and push). This adds the AdSense script to content pages, the `google-adsense-account` meta tag everywhere, and `ads.txt`. Legal pages, noindex pages and the 404 page never load ads.
+3. In AdSense, turn on **Auto ads** for the site. Ads appear automatically once Google approves it; nothing shows before that.
+4. EEA/UK/Swiss visitors: in AdSense go to **Privacy & messaging** and publish a consent message. The footer "Ad and cookie settings" link appears automatically once it loads.
+5. Optional manual unit: set `ADSENSE_SLOT` to a display ad unit ID to place one labelled ad on guides and the news page.
+In GitHub, set repository variables or edit the workflow to pass ADSENSE_ID, SITE_URL and CONTACT_EMAIL into the build step.
+
+## News
+`data/feeds.json` lists RSS/Atom feeds fetched at build time (twice a day via the workflow). Edit it to add or remove sources. Items are cached in `data/news.json`, older than 120 days are dropped, and a failed feed is skipped. Check the Actions log for "feed skipped" lines to see which URLs need fixing.
