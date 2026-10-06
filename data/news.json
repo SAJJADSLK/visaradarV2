@@ -1,24 +1,38 @@
 [
  {
-  "t": "Guidance: Introduction to the sponsorship management system: SMS manual 1",
-  "u": "https://www.gov.uk/government/publications/use-the-sponsorship-management-system-sms-user-manual",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-05",
-  "x": "Introduction to using SMS for licensed sponsors."
- },
- {
   "t": "Guidance: Register of licensed sponsors: students",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-05",
+  "d": "2026-10-06",
   "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
  },
  {
   "t": "Guidance: Register of licensed sponsors: workers",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-05",
+  "d": "2026-10-06",
   "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
+ },
+ {
+  "t": "Guidance: Offender management: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/offender-management-caseworker-guidance",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-06",
+  "x": "Immigration staff guidance on dealing with immigration enforcement matters within the UK."
+ },
+ {
+  "t": "Guidance: Unaccompanied asylum seeking children and leaving care: funding instructions",
+  "u": "https://www.gov.uk/government/publications/unaccompanied-asylum-seeking-children-uasc-grant-instructions",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-06",
+  "x": "Instructions to local authorities about funding for the support and care of former and unaccompanied asylum seeking children (UASC)."
+ },
+ {
+  "t": "Guidance: Introduction to the sponsorship management system: SMS manual 1",
+  "u": "https://www.gov.uk/government/publications/use-the-sponsorship-management-system-sms-user-manual",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-05",
+  "x": "Introduction to using SMS for licensed sponsors."
  },
  {
   "t": "Prove your English language abilities with a secure English language test (SELT)",
