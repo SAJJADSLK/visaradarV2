@@ -42,6 +42,27 @@
   "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
  },
  {
+  "t": "Transparency data: Online immigration status (eVisa): UKVI account creation data",
+  "u": "https://www.gov.uk/government/publications/online-immigration-status-evisa-ukvi-account-creation-data",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-12",
+  "x": "Operational statistics on how many people have created an account to access an eVisa."
+ },
+ {
+  "t": "Guidance: Exclusion from the UK – decisions and orders: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/exclusion-decisions-and-exclusion-orders",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-12",
+  "x": "Immigration staff guidance on decisions and orders on the exclusion of foreign nationals from the UK."
+ },
+ {
+  "t": "Guidance: Immigration Rules archive: 3 August 2026 to 7 October 2026",
+  "u": "https://www.gov.uk/government/publications/immigration-rules-archive-3-august-2026-to-7-october-2026",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-12",
+  "x": "Immigration Rules archive for 3 August 2026 to 7 October 2026."
+ },
+ {
   "t": "Guidance: Student sponsor guidance",
   "u": "https://www.gov.uk/government/publications/student-sponsor-guidance",
   "s": "UK Visas and Immigration (GOV.UK)",
@@ -285,13 +306,6 @@
   "s": "Lewis Silkin",
   "d": "2026-09-30",
   "x": "The changes touch the visitor route as well as Skilled Worker, EU Settlement Scheme and Hong Kong BN(O) routes."
- },
- {
-  "t": "Transparency data: Online immigration status (eVisa): UKVI account creation data",
-  "u": "https://www.gov.uk/government/publications/online-immigration-status-evisa-ukvi-account-creation-data",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-09-30",
-  "x": "Operational statistics on how many people have created an account to access an eVisa."
  },
  {
   "t": "Guidance: Buckinghamshire New University: Student sponsor licence suspension",
