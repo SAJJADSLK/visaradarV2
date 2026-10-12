@@ -3,15 +3,43 @@
   "t": "Guidance: Register of licensed sponsors: students",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-09",
+  "d": "2026-10-12",
   "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
  },
  {
   "t": "Guidance: Register of licensed sponsors: workers",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-09",
+  "d": "2026-10-12",
   "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
+ },
+ {
+  "t": "Prove your English language abilities with a secure English language test (SELT)",
+  "u": "https://www.gov.uk/guidance/prove-your-english-language-abilities-with-a-secure-english-language-test-selt",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-12",
+  "x": "For visa or citizenship applications, you may need to prove your knowledge of English by passing a secure English language test (SELT)."
+ },
+ {
+  "t": "Guidance: EU Settlement Scheme: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/eu-settlement-scheme-caseworker-guidance",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-12",
+  "x": "Immigration staff guidance on applications under the EU Settlement Scheme."
+ },
+ {
+  "t": "Guidance: EU Settlement Scheme: looked-after children and care leavers guidance",
+  "u": "https://www.gov.uk/government/publications/eu-settlement-scheme-looked-after-children-and-care-leavers-guidance",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-12",
+  "x": "Guidance for local authorities and health and social care trusts to make sure looked-after children and care leavers apply to the EU Sett..."
+ },
+ {
+  "t": "Guidance: Ukraine: country policy and information notes",
+  "u": "https://www.gov.uk/government/publications/ukraine-country-policy-and-information-notes",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-10-12",
+  "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
  },
  {
   "t": "Guidance: Student sponsor guidance",
@@ -152,13 +180,6 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-05",
   "x": "Introduction to using SMS for licensed sponsors."
- },
- {
-  "t": "Prove your English language abilities with a secure English language test (SELT)",
-  "u": "https://www.gov.uk/guidance/prove-your-english-language-abilities-with-a-secure-english-language-test-selt",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-05",
-  "x": "For visa or citizenship applications, you may need to prove your knowledge of English by passing a secure English language test (SELT)."
  },
  {
   "t": "Haiti makes the iKat digital arrival and departure form mandatory",
