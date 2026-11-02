@@ -1,5 +1,33 @@
 [
  {
+  "t": "Guidance: Register of licensed sponsors: students",
+  "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-02",
+  "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
+ },
+ {
+  "t": "Guidance: Register of licensed sponsors: workers",
+  "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-02",
+  "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
+ },
+ {
+  "t": "Prove your English language abilities with a secure English language test (SELT)",
+  "u": "https://www.gov.uk/guidance/prove-your-english-language-abilities-with-a-secure-english-language-test-selt",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-02",
+  "x": "For visa or citizenship applications, you may need to prove your knowledge of English by passing a secure English language test (SELT)."
+ },
+ {
+  "t": "Guidance: Morocco: tuberculosis test clinics for a UK visa",
+  "u": "https://www.gov.uk/government/publications/tuberculosis-test-for-a-uk-visa-clinics-in-morocco",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-02",
+  "x": "Where to get tested for tuberculosis (TB) in Morocco for your UK visa application."
+ },
+ {
   "t": "Guidance: India: tuberculosis test clinics for a UK visa",
   "u": "https://www.gov.uk/government/publications/india-tuberculosis-test-clinics-for-a-uk-visa",
   "s": "UK Visas and Immigration (GOV.UK)",
@@ -12,20 +40,6 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-11-01",
   "x": "Find out if your university qualification means you're eligible for a High Potential Individual visa."
- },
- {
-  "t": "Guidance: Register of licensed sponsors: students",
-  "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-30",
-  "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
- },
- {
-  "t": "Guidance: Register of licensed sponsors: workers",
-  "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-30",
-  "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
  },
  {
   "t": "Guidance: Ethiopia: country policy and information notes",
@@ -117,13 +131,6 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-27",
   "x": "Immigration staff guidance on how to consider applications to enter, remain or settle in the UK on the International Sportsperson route."
- },
- {
-  "t": "Prove your English language abilities with a secure English language test (SELT)",
-  "u": "https://www.gov.uk/guidance/prove-your-english-language-abilities-with-a-secure-english-language-test-selt",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-26",
-  "x": "For visa or citizenship applications, you may need to prove your knowledge of English by passing a secure English language test (SELT)."
  },
  {
   "t": "Guidance: Fiji: tuberculosis test clinic for a UK visa",
@@ -551,12 +558,5 @@
   "s": "Lewis Silkin",
   "d": "2026-09-30",
   "x": "The changes touch the visitor route as well as Skilled Worker, EU Settlement Scheme and Hong Kong BN(O) routes."
- },
- {
-  "t": "Guidance: Buckinghamshire New University: Student sponsor licence suspension",
-  "u": "https://www.gov.uk/government/publications/buckinghamshire-new-university-student-sponsor-licence-suspension",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-09-30",
-  "x": "On 30 September 2026, the Home Office suspended Buckinghamshire New University's Student sponsor licence."
  }
 ]
