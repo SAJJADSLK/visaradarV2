@@ -21,6 +21,27 @@
   "x": "Immigration staff guidance on administrative and criminal powers for officers dealing with immigration enforcement matters within the UK."
  },
  {
+  "t": "Government travel",
+  "u": "https://www.gov.uk/guidance/government-travel",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-03",
+  "x": "If you are travelling to the UK for government purposes, your travel requirements depend on your nationality."
+ },
+ {
+  "t": "Consular officer or employee based in the UK",
+  "u": "https://www.gov.uk/guidance/consular-officer-or-employee-based-in-the-uk",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-03",
+  "x": "Information on what to do if you are a consular officer or a consular employee based in the UK."
+ },
+ {
+  "t": "People attending a qualifying international conference in the UK",
+  "u": "https://www.gov.uk/guidance/people-attending-a-qualifying-international-conference-in-the-uk",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-03",
+  "x": "Information for government representatives and members of official government staff attending a qualifying international conference in th..."
+ },
+ {
   "t": "Prove your English language abilities with a secure English language test (SELT)",
   "u": "https://www.gov.uk/guidance/prove-your-english-language-abilities-with-a-secure-english-language-test-selt",
   "s": "UK Visas and Immigration (GOV.UK)",
@@ -537,26 +558,5 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-01",
   "x": "Guidance for employers on how to avoid discrimination when carrying out right to work checks."
- },
- {
-  "t": "Guidance: Right to rent immigration checks: landlords' code of practice",
-  "u": "https://www.gov.uk/government/publications/right-to-rent-landlords-code-of-practice",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-01",
-  "x": "Guidance for landlords, homeowners and letting agents affected by the introduction of right to rent immigration checks."
- },
- {
-  "t": "Guidance: Landlord's guide to right to rent checks",
-  "u": "https://www.gov.uk/government/publications/landlords-guide-to-right-to-rent-checks",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-01",
-  "x": "This guidance advises a landlord, letting agent or homeowner how to conduct a right to rent check when letting privately rented accommoda..."
- },
- {
-  "t": "UK immigration rule changes take effect on 8 October 2026",
-  "u": "https://www.lewissilkin.com/insights/2026/09/30/summary-of-autumn-2026-immigration-rule-changes-102o3xt",
-  "s": "Lewis Silkin",
-  "d": "2026-09-30",
-  "x": "The changes touch the visitor route as well as Skilled Worker, EU Settlement Scheme and Hong Kong BN(O) routes."
  }
 ]
