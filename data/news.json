@@ -14,6 +14,13 @@
   "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
  },
  {
+  "t": "Form: Windrush Scheme application form (UK)",
+  "u": "https://www.gov.uk/government/publications/windrush-scheme-application-form-uk",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-10",
+  "x": "Application form for the Windrush Scheme."
+ },
+ {
   "t": "Guidance: Student sponsor guidance",
   "u": "https://www.gov.uk/government/publications/student-sponsor-guidance",
   "s": "UK Visas and Immigration (GOV.UK)",
@@ -551,12 +558,5 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-02",
   "x": "Step-by-step guide to using multi-factor authentication (MFA) when logging into the sponsorship management system (SMS)."
- },
- {
-  "t": "Guidance: Palestine: country policy and information notes",
-  "u": "https://www.gov.uk/government/publications/palestine-country-policy-and-information-notes",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-02",
-  "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
  }
 ]
