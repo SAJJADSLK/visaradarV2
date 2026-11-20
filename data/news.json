@@ -1,5 +1,19 @@
 [
  {
+  "t": "Guidance: Returns preparation: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/returns-preparation",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-20",
+  "x": "Immigration staff guidance on arranging removals for officers dealing with immigration enforcement matters within the UK."
+ },
+ {
+  "t": "Guidance: China: country policy and information notes",
+  "u": "https://www.gov.uk/government/publications/china-country-policy-and-information-notes",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-20",
+  "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
+ },
+ {
   "t": "Guidance: Register of licensed sponsors: students",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
   "s": "UK Visas and Immigration (GOV.UK)",
@@ -544,19 +558,5 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-06",
   "x": "Immigration staff guidance for when the applicant's nationality is doubtful, disputed or unknown."
- },
- {
-  "t": "Guidance: Iraq: country policy and information notes",
-  "u": "https://www.gov.uk/government/publications/iraq-country-policy-and-information-notes",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-06",
-  "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
- },
- {
-  "t": "Guidance: Introduction to the sponsorship management system: SMS manual 1",
-  "u": "https://www.gov.uk/government/publications/use-the-sponsorship-management-system-sms-user-manual",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-05",
-  "x": "Introduction to using SMS for licensed sponsors."
  }
 ]
