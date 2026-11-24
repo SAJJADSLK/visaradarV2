@@ -3,15 +3,22 @@
   "t": "Guidance: Register of licensed sponsors: students",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-11-23",
+  "d": "2026-11-24",
   "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
  },
  {
   "t": "Guidance: Register of licensed sponsors: workers",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-11-23",
+  "d": "2026-11-24",
   "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
+ },
+ {
+  "t": "Guidance: Syria: country policy and information notes",
+  "u": "https://www.gov.uk/government/publications/syria-country-policy-and-information-notes",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-24",
+  "x": "Guidance used by UK Visas and Immigration to make decisions in asylum and human rights applications."
  },
  {
   "t": "Prove your English language abilities with a secure English language test (SELT)",
@@ -551,12 +558,5 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-07",
   "x": "Guidance for sponsors on sponsoring a seasonal worker."
- },
- {
-  "t": "Guidance: Unaccompanied asylum seeking children and leaving care: funding instructions",
-  "u": "https://www.gov.uk/government/publications/unaccompanied-asylum-seeking-children-uasc-grant-instructions",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-06",
-  "x": "Instructions to local authorities about funding for the support and care of former and unaccompanied asylum seeking children (UASC)."
  }
 ]
