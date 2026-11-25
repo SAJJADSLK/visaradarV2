@@ -3,15 +3,43 @@
   "t": "Guidance: Register of licensed sponsors: students",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-11-24",
+  "d": "2026-11-25",
   "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
  },
  {
   "t": "Guidance: Register of licensed sponsors: workers",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-11-24",
+  "d": "2026-11-25",
   "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
+ },
+ {
+  "t": "Guidance: Chapter 08 – appendix FM family members: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/chapter-8-appendix-fm-family-members",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-25",
+  "x": "Immigration staff guidance on dealing with family applications."
+ },
+ {
+  "t": "Guidance: Innovator Founder: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/innovator-appendix-w-workers",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-25",
+  "x": "Immigration staff guidance on how decisions are made about applications from Innovator Founders."
+ },
+ {
+  "t": "Guidance: Lead sponsor applications: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/lead-sponsor-applications-caseworker-guidance",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-25",
+  "x": "Guidance on how to assess applications to become lead sponsors from charities and community interest companies (CICs) for the community s..."
+ },
+ {
+  "t": "Using the ‘UK Immigration: ID Check’ app",
+  "u": "https://www.gov.uk/guidance/using-the-uk-immigration-id-check-app",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-25",
+  "x": "Information on using the app when applying to work, study or live in the UK."
  },
  {
   "t": "Guidance: Syria: country policy and information notes",
@@ -530,33 +558,5 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-07",
   "x": "Where to get tested for tuberculosis (TB) in El Salvador for your UK visa application."
- },
- {
-  "t": "Guidance: Section 31 Immigration and Asylum Act 1999: caseworker guidance",
-  "u": "https://www.gov.uk/government/publications/section-31-immigration-and-asylum-act-1999-defence-against-prosecution",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-07",
-  "x": "Immigration staff guidance on considering the defence against criminal prosecution available to genuine asylum seekers."
- },
- {
-  "t": "Guidance: Visit: caseworker guidance",
-  "u": "https://www.gov.uk/government/publications/visit-guidance",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-07",
-  "x": "Immigration staff guidance about the different visitor categories for visiting the UK and how UK Visas and Immigration makes decisions on..."
- },
- {
-  "t": "Guidance: Visit visa: guide to supporting documents",
-  "u": "https://www.gov.uk/government/publications/visitor-visa-guide-to-supporting-documents",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-07",
-  "x": "This guidance explains the documents you should provide to support your application to visit the UK."
- },
- {
-  "t": "Guidance: Sponsor a seasonal worker",
-  "u": "https://www.gov.uk/government/publications/workers-and-temporary-workers-guidance-for-sponsors-sponsor-a-seasonal-worker",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-07",
-  "x": "Guidance for sponsors on sponsoring a seasonal worker."
  }
 ]
