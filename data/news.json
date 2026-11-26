@@ -42,6 +42,13 @@
   "x": "Information on using the app when applying to work, study or live in the UK."
  },
  {
+  "t": "Guidance: Applications for a fee waiver: caseworker guidance",
+  "u": "https://www.gov.uk/government/publications/applications-for-a-fee-waiver-and-refunds",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-25",
+  "x": "Immigration staff guidance on processing applications for a fee waiver."
+ },
+ {
   "t": "Guidance: Syria: country policy and information notes",
   "u": "https://www.gov.uk/government/publications/syria-country-policy-and-information-notes",
   "s": "UK Visas and Immigration (GOV.UK)",
@@ -551,12 +558,5 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-08",
   "x": "Where to get tested for tuberculosis (TB) in the Dominican Republic for your UK visa application."
- },
- {
-  "t": "Guidance: El Salvador: tuberculosis test clinics for a UK visa",
-  "u": "https://www.gov.uk/government/publications/el-salvador-tuberculosis-test-clinics-for-a-uk-visa",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-07",
-  "x": "Where to get tested for tuberculosis (TB) in El Salvador for your UK visa application."
  }
 ]
