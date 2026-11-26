@@ -3,15 +3,36 @@
   "t": "Guidance: Register of licensed sponsors: students",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-11-25",
+  "d": "2026-11-26",
   "x": "List of institutions licensed to sponsor migrant students under the Student and Child Student routes."
  },
  {
   "t": "Guidance: Register of licensed sponsors: workers",
   "u": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
   "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-11-25",
+  "d": "2026-11-26",
   "x": "List of organisations licensed to sponsor workers on the Worker and Temporary Worker immigration routes."
+ },
+ {
+  "t": "Migration transparency data",
+  "u": "https://www.gov.uk/government/statistical-data-sets/migration-transparency-data",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-26",
+  "x": "Data on Border Force, UK Visas and Immigration, Immigration Enforcement and Passports, Citizenship and Civil Registration performance."
+ },
+ {
+  "t": "Guidance: Nigeria: tuberculosis test clinics for a UK visa",
+  "u": "https://www.gov.uk/government/publications/tuberculosis-test-for-a-uk-visa-clinics-in-nigeria",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-26",
+  "x": "Where to get tested for tuberculosis (TB) in Nigeria for your UK visa application."
+ },
+ {
+  "t": "Official Statistics: Statistical compliance for Migration transparency data",
+  "u": "https://www.gov.uk/government/statistics/statistical-compliance-for-migration-transparency-data",
+  "s": "UK Visas and Immigration (GOV.UK)",
+  "d": "2026-11-26",
+  "x": "This page contains information on the Migration transparency data’s voluntary compliance with the Code of Practice for Statistics."
  },
  {
   "t": "Guidance: Chapter 08 – appendix FM family members: caseworker guidance",
@@ -236,13 +257,6 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-11-01",
   "x": "Where to get tested for tuberculosis (TB) in India for your UK visa application."
- },
- {
-  "t": "Migration transparency data",
-  "u": "https://www.gov.uk/government/statistical-data-sets/migration-transparency-data",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-29",
-  "x": "Data on Border Force, UK Visas and Immigration, Immigration Enforcement and Passports, Citizenship and Civil Registration performance."
  },
  {
   "t": "Guidance: Vietnam: tuberculosis test clinics for a UK visa",
@@ -544,19 +558,5 @@
   "s": "UK Visas and Immigration (GOV.UK)",
   "d": "2026-10-08",
   "x": "Immigration staff guidance on how to consider applications from people applying on the basis of long residence in the UK."
- },
- {
-  "t": "Form: Apply to the EU Settlement Scheme by post",
-  "u": "https://www.gov.uk/government/publications/apply-to-the-eu-settlement-scheme-by-post-or-email",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-08",
-  "x": "Forms to apply to the EU Settlement Scheme if you are unable to use the online application process."
- },
- {
-  "t": "Guidance: Dominican Republic: tuberculosis test clinics for a UK visa",
-  "u": "https://www.gov.uk/government/publications/tuberculosis-test-for-a-uk-visa-clinics-in-the-dominican-republic",
-  "s": "UK Visas and Immigration (GOV.UK)",
-  "d": "2026-10-08",
-  "x": "Where to get tested for tuberculosis (TB) in the Dominican Republic for your UK visa application."
  }
 ]
